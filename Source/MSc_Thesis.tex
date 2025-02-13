@@ -1,5 +1,7 @@
 
 \documentclass[oneside,a4paper]{book}
+
+\usepackage{pdfpages}
 %\pagestyle{headings}
 
 \input{preamble}
@@ -50,6 +52,8 @@ Name of the Assistant, Group, Institute, University, Assistant
 \include{Chapters/Background}
 \newpage{\pagestyle{empty} \cleardoublepage}
 
+\include{Chapters/PriorWork}
+\newpage{\pagestyle{empty} \cleardoublepage}
 
 \include{Chapters/Method}
 \newpage{\pagestyle{empty} \cleardoublepage}
@@ -77,7 +81,9 @@ Name of the Assistant, Group, Institute, University, Assistant
 \addcontentsline{toc}{chapter}{\numberline{}Bibliography}
 \bibliographystyle{plain}
 \nocite{*}
-\bibliography{thesis}
+\bibliography{MSc_Thesis}
+
+\includepdf{Erklaerung.pdf}
 
 
 %END Doc
