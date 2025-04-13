@@ -3,13 +3,13 @@
 
 \emph{In this section, you should outline the most important academical works revolving around your topic. You may use subsections to structure your work if necessary.}
 
+This chapter reviews the current advancements in immersive technologies for schizophrenia simulations and therapy. It examines the use of Virtual Reality (VR), Augmented Reality (AR), and Mixed Reality (MR) in simulating psychotic symptoms, fostering empathy, and treating schizophrenia spectrum disorders. The chapter highlights key studies, their methodologies, and outcomes, while addressing design considerations, limitations, and future directions for integrating immersive technologies into healthcare and education.
 
-This chapter reviews the current advancements in immersive technologies for schizophrenia simulations and therapy. It examines the use of VR, AR, and MR in simulating psychotic symptoms, fostering empathy, and treating schizophrenia spectrum disorders. The chapter highlights key studies, their methodologies, and outcomes, while addressing design considerations, limitations, and future directions for integrating immersive technologies into healthcare and education.
+\section{XR Technologies}
+Extended Reality (XR) refers to the spectrum of immersive technologies that blend the physical and digital world. This includes Virtual Reality (VR), which fully immerses the user in a computer-generated environment; Augmented Reality (AR), which overlays digital content onto the real world; and Mixed Reality (MR), which combines both, allowing real and virtual elements to interact in real time. In the context of schizophrenia education, VR is often used to simulate intense sensory experiences, such as auditory or visual hallucinations. AR has been applied to embed simulated voices or visual cues into everyday settings, making the experience more relatable. MR, the focus of this thesis, seeks to integrate the strengths of both: allowing users to remain grounded in reality while experiencing interactive, layered symptoms, which may lead to higher engagement and emotional resonance \cite{Krogmeier2024, Silva2017, Zare-Bidaki2022}.
 
 \section{Immersive Schizophrenia Simulations}
 Schizophrenia is a complex mental disorder, characterized by symptoms such as auditory and visual hallucinations \cite{Silverstein2021}. In recent years, immersive technologies such as Virtual Reality (VR), Augmented Reality (AR), and Mixed Reality (MR) have emerged as powerful tools to provide first-person, interactive simulations of schizophrenia symptoms. Important to note is, that out of these three methods, VR is the most popular and most researched tool \cite{Kuhail2022} indicating that there exists a research gap concerning the other two methods. These simulations aim to enhance empathy, reduce stigma, and improve clinical understanding by offering users a direct, experiential perspective. This section explores the background of immersive schizophrenia simulations and their impact on medical education and public awareness.
-
-% talk about the different methods (VR, AR, MR) and how they are used in the studies
 
 \subsection{Simulation of Hallucinations and Delusions}
 A major goal of schizophrenia simulations is to recreate symptoms such as hearing voices, visual hallucinations, or experiencing delusions. For example, Skoy et al. (2016) \cite{Skoy2016} created a simulation where users hear disturbing voices through headphones to better understand the kind of confusion and distraction that people with schizophrenia may deal with. Other studies, like those by Zare-Bidaki et al. (2022) \cite{Zare-Bidaki2022} and Chaffin et al. (2013) \cite{Chaffin2013}, used virtual reality (VR) to create multi-sensory experiences, combining sound, visuals, and interaction to simulate intense delusions and internal voices. These simulations give users a chance to experience how people with psychosis may perceive the world.
@@ -24,7 +24,7 @@ Many studies in this field have focused on using VR to simulate schizophrenia sy
 
 Marques et al. (2022) ran an experiment to compare how well a VR simulation and a regular 2D video improved empathy, knowledge, and attitudes about schizophrenia. Participants were divided into two groups: one group experienced the symptoms of psychosis in VR, and the other watched the same content in a video format. The study found that the VR group showed greater increases in cognitive empathy and more positive attitudes. However, there were also some challenges. For example,there was no control group with no exposure at all, making it harder to judge the full effect of the simulation. The short length of the simulation may have limited its impact, and some participants struggled to fully engage with the technology due to unfamiliarity with VR. In addition, the study reported some unexpected results in physiological responses and did not measure how immersive the experience felt \cite{Marques2022}. In this thesis, we aim to address some of these issues by using Mixed Reality (MR) instead of VR, which may feel more familiar and less overwhelming to users. We will also measure the level of immersion and provide participants with background knowledge before the simulation to improve understanding. % follow up on this
 
-Another relevant study is by Zare-Bidaki et al. (2022), who looked at how a single VR simulation of psychosis (VRSP) affected medical students' stigma, empathy, and knowledge compared to traditional patient visits. Their results showed that VRSP gave students a more consistent understanding of symptoms, since real patient experiences can vary from case to case. Both the VR and patient visit groups showed reduced stigma and increased empathy, but the VR group had a slightly stronger effect. However, the study noted that VR should not replace direct patient contact - it should be used as a supplement. %elaborate on why!
+Another relevant study is by Zare-Bidaki et al. (2022), who looked at how a single VR simulation of psychosis (VRSP) affected medical students' stigma, empathy, and knowledge compared to traditional patient visits. Their results showed that VRSP gave students a more consistent understanding of symptoms, since real patient experiences can vary from case to case. Both the VR and patient visit groups showed reduced stigma and increased empathy, but the VR group had a slightly stronger effect. However, the study noted that VR should not replace direct patient contact - it should be used as a supplement. This real-world context adds human depth, reduces the risk of reinforcing stereotypes, and fosters more lasting empathy. Without this, users might focus solely on the strangeness or severity of symptoms rather than understanding the person behind them. Educational simulations should therefore be seen as tools that complement —n ot replace — personal connection, clinical observation, and comprehensive education \cite{Zare-Bidaki2022,Hsia2022}.
 Importantly, while both methods increased empathy, the link between empathy and stigma reduction still needs more research \cite{Zare-Bidaki2022}.
 
 The study also pointed out some possible downsides of using VR without additional context. If the simulation focuses too much on dramatic or frightening symptoms, it could unintentionally increase stigma rather than reduce it. That's why it's important to pair simulations with educational content that shows the full picture of what it's like to live with schizophrenia—not just the symptoms. In this thesis, this issue will be addressed by ensuring that students receive proper background knowledge on schizophrenia before the simulation, so they can better understand the experience from a cognitive perspective as well \cite{Zare-Bidaki2022}.
@@ -40,7 +40,6 @@ To test the system, 21 medical students used AR glasses to experience the simula
 
 The simulations impact on empathy and stigma was measured using questionnaires before and after the experience. The results showed that students felt more empathy, expressed more concern for a fictional patient, and were more willing to help. However, there was also a small increase in stigma scores, showing that the results were complex. The study suggests that while AR can help foster empathy, future designs should focus on improving comfort and exploring long-term effects. It also recommends combining simulations with brief educational sessions on schizophrenia to deepen understanding. In this thesis, a similar approach is taken: students will participate in the simulation after receiving a lecture on schizophrenia, which should help them better understand and relate to the experience. \emph{(Check: do all participants actually receive the lecture beforehand?)}
 
-
 A more recent project by Krogmeier et al. (2024) involved the development of \textit{Live-It}, an AR simulation that used the passthrough function of the Meta Quest headset. This system simulated hallucinations and delusions in familiar places like living rooms or pharmacies. The design was based on real-life accounts from individuals with schizophrenia and was reviewed by neuropsychologists to ensure accuracy \cite{Krogmeier2024}.
 
 Participants in the study  —mainly students and professionals in mental health — reported strong emotional reactions and said the simulation helped them better understand schizophrenia symptoms. One of the strengths of \textit{Live-It} was its ability to place symptoms into everyday situations, which made the experience feel more realistic and less overwhelming than fully immersive VR. For example, users heard voices that ranged from critical to supportive, reflecting the variety of hallucinations people might experience. The simulation also ended with hopeful, recovery-focused messages, which helped balance the emotional impact. Overall, the study found that \textit{Live-It} increased empathy and encouraged participants to support individuals with schizophrenia. It showed that AR can be a powerful tool in mental health education, especially when it helps bridge the gap between theory and real-life experience \cite{Krogmeier2024}.
@@ -54,7 +53,6 @@ Even though immersive simulations are becoming more popular in mental health edu
 Another issue is finding the right balance between realism and ease of use. Creating highly realistic simulations requires detailed sound and visual effects, as well as believable acting. This can be technically complex and time-consuming. In addition, designers must consider the wide variety of ways symptoms can appear in different individuals. Without this, the simulation might not be relevant — or even appropriate — for all users \cite{Zare-Bidaki2022}.
 
 In summary, immersive technologies like VR, AR, and MR have great potential in mental health education, especially for conditions like schizophrenia. As these technologies continue to improve, they are expected to become more common in medical and nursing training. This could lead to more engaging and effective learning experiences, and ultimately, better care for patients.
-
 
 \section{Empathy}
 
@@ -101,3 +99,38 @@ These studies show that MR can be a valuable tool in medical education, especial
 
 \subsection{Measuring Empathy}
 Various instruments are used to measure these dimensions of empathy, including the Jefferson Scale of Empathy (JSE), which is being widely applied in medical education \cite{Alieldin2024}. This tool allows researchers to assess changes in empathy following interventions and distinguish between shifts in emotional versus cognitive components, which is also what I want to achieve in this thesis. In the context of this thesis, the JSE will be used to measure the impact of the MR simulation on medical students' empathy levels. The JSE is a validated instrument that has been widely used in medical education research and has demonstrated reliability and validity in assessing empathy in healthcare professionals \cite{Hojat2002}. By employing the JSE, this study aims to provide a comprehensive evaluation of the effectiveness of the MR simulation in enhancing both cognitive and affective empathy among medical students. In chapter 5, we will discuss the results of the JSE and how they relate to the overall objectives of this thesis.
+
+\begin{table}[htbp]
+    \centering
+    \scriptsize
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{2.8cm}|p{1.4cm}|p{2cm}|p{2.4cm}|p{2.6cm}|p{3.6cm}|p{0.8cm}|p{1.6cm}|}
+    \hline
+    \textbf{Authors (Year)} & \textbf{Tech.} & \textbf{Target Group} & \textbf{Design} & \textbf{Symptoms Simulated} & \textbf{Main Results} & \textbf{Year} & \textbf{Empathy Type} \\
+    \hline
+    Skoy et al.\ (2016) & VR & Pharmacy Students & Pre/Post Exp. & Auditory Hallucinations & Increased empathy & 2016 & Affective \\
+    Zare-Bidaki et al.\ (2022) & VR & Medical Students & Patient Visit Comparison & Auditory + Delusions & Greater empathy, stigma reduction & 2022 & Affective \\
+    Chaffin et al.\ (2013) & VR & General Public & Exploratory & Auditory + Visual Halluc. & Understanding, distress & 2013 & Affective \\
+    Silverstein et al.\ (2021) & VR & General Public & Survey/VR & Visual Hallucinations & Reduced stigma & 2021 & Affective \\
+    Van Ommen et al.\ (2019) & Survey & Psychosis Patients & Survey Study & Visual Hallucinations & Simulation insights & 2019 & None \\
+    Yoo et al.\ (2020) & 360 VR & Nursing Students & Usability Study & Multiple & Immersive training & 2020 & Affective \\
+    Lee et al.\ (2020) & 360 VR & Nursing Students & Usability Study & Multiple & Awareness, safe tool & 2020 & Affective \\
+    Kuhail et al.\ (2022) & VR & Medical Students & Controlled Trial & Auditory Hallucinations & Strong engagement & 2022 & Affective \\
+    Marques et al.\ (2022) & VR & General Public & Controlled Trial & Auditory + Visual + Delusions & High empathy, physio response & 2022 & Affective \\
+    Silva et al.\ (2017) & AR & Medical Students & Pilot Study & Auditory + Visual & Realism, some discomfort & 2017 & Affective \\
+    Krogmeier et al.\ (2024) & AR/MR & Healthcare Students & Qualitative Eval. & Auditory + Visual + Delusions & Empathy increased & 2024 & Affective \\
+    Hsia et al.\ (2022) & VR + Speaker & Pharmacy Students & Mixed-Methods & Auditory + Discussion & Speaker addition effective & 2022 & Affective \\
+    Cunico et al.\ (2012) & Training & Nursing Students & Longitudinal & N/A & Emotional empathy ↑ (females) & 2012 & Affective \\
+    Ozcan et al.\ (2018) & Curriculum & Nursing Students & Comparative Longitudinal & N/A & Higher empathy (integrated) & 2018 & Affective \\
+    Ventura et al.\ (2020) & VR & General Pop. & Meta-analysis & Various & Cognitive empathy ↑ & 2020 & Cognitive \\
+    Rueda \& Lara (2020) & VR & General & Theory Review & N/S & Affective focus & 2020 & Affective \\
+    Mattsson et al.\ (2024) & VR & Nursing Students & Qualitative & Pneumonia Sim & Affective empathy elicited & 2024 & Affective \\
+    Alieldin et al.\ (2024) & VR & Medical Students & Mixed Methods & Social Isolation & JSE ↑, emotional engagement & 2024 & Affective \\
+    Martingano et al.\ (2021) & VR & General Pop. & Meta-Analysis & Various & Affective ↑, Cognitive — & 2021 & Affective \\
+    \hline
+    \end{tabular}%
+    }
+    \caption{Summary of studies on immersive and training-based empathy interventions, including type of empathy increased.}
+    \label{tab:empathy_summary}
+    \end{table}
+    

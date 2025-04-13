@@ -22,6 +22,9 @@
 \usepackage{listings}
 \usepackage[normalem]{ulem} %emphasize still italic
 \usepackage{ucs}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+
 
 % \usepackage[utf8]{inputenc}
 % \usepackage[htt]{hyphenat}
@@ -41,6 +44,15 @@
 % allows for temporary adjustment of side margins
 \usepackage{chngpage}
 \usepackage[normalem]{ulem} 
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning}
+
+\tikzset{
+  block/.style={rectangle, draw=black, fill=yellow!50, rounded corners, minimum height=1.2em, text centered, text width=3cm},
+  module/.style={circle, draw=black, fill=blue!30, minimum size=2cm, text centered, align=center}, 
+  orchestrator/.style={circle, draw=black, fill=black, text=white, minimum size=2.5cm, text centered},
+  arrow/.style={-Stealth, thick}
+}
 
 % constants
 
