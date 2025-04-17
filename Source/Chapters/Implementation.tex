@@ -104,20 +104,25 @@ Synchronization across components ensures the user is not overwhelmed with concu
     \end{landscape}
     
 
-\subsection{Auditory Hallucinations}
-Auditory components are managed through the \textit{SoundManager.cs} script. Audio files are categorized by voice groups, allowing flexible playback of specific hallucination samples. These include accusatory, confusing, or frightening phrases aligned with real-world hallucination narratives. Voices are triggered at strategic moments, emphasizing perceived threat or paranoia. Repetition and timing are synchronized with visual triggers to simulate multisensory integration as reported by patients.
+    \subsection{Auditory Hallucinations}
 
-Additionally, \textit{ObjectCollision.cs} introduces an interactive auditory loop tied to the users environment. Repetitive auditory hallucinations only stop when the user physically interacts with an object, reinforcing the feeling of helplessness and unpredictability, a hallmark of psychosis.
+    The auditory effects in the system are handled by the \textit{SoundManager.cs} script. Audio files are grouped by voice type, making it easy to play back different kinds of hallucination samples. These voices include phrases that sound accusatory, confusing, or frightening—reflecting common real-world descriptions of auditory hallucinations.
+    
+    The voices were generated using ElevenLabs, a text-to-speech AI engine \cite{elevenlabs}. Each one was created with a specific emotional tone in mind: one voice sounds scared and almost shouting, another is snooty and mean, and the third sounds lost and desperate. These voices are played at key moments to create a stronger sense of fear, confusion, or paranoia. Their timing is matched with visual effects to create a more immersive and realistic experience of multisensory hallucinations.
+    
+    In addition, the \textit{ObjectCollision.cs} script adds interactive audio that loops until the user physically interacts with an object. This mimics the frustrating and unpredictable nature of hallucinations, as often described by people experiencing psychosis.
+    
+    
 
 \subsection{Visual Hallucinations}
 Visual components are diversified to simulate various hallucination types:
 \begin{itemize}
-    \item Wave Deformation: DynamicWaveDeformation.cs distorts object surfaces using sinusoidal transformations, creating a pulsating, shifting geometry that mimics perceptual distortions in psychosis.
-    \item Gradual Screen Darkening: ScreenDarkener.cs overlays a semi-transparent black UI panel to simulate the narrowing of visual perception or "tunnel vision," often reported during intense hallucinations.
-    \item Dot Fields: DotManager.cs spawns randomly colored red and blue dots in front of the user. These represent disorganized perceptual input or visual noise, akin to the floating patterns described in clinical studies of psychosis.
+    \item Wave Deformation: \textit{DynamicWaveDeformation.cs} distorts object surfaces using transformations, creating a pulsating geometry that mimics perceptual distortions in psychosis.
+    \item Gradual Screen Darkening: \textit{ScreenDarkener.cs} overlays a semi-transparent black UI panel to simulate the narrowing of visual perception or "tunnel vision," often reported during intense hallucinations.
+    \item Dot Fields: \textit{DotManager.cs} creates random red and blue dots that appear above the user. These dots represent chaotic visual input or visual noise, similar to the floating patterns often described by people experiencing psychosis.
     \item Pulsating Spheres: The Orchestrator periodically spawns spherical objects, creating a feeling of presence and spatial invasion. Their randomness and impermanence reflect transient hallucinations and visual object anomalies.
 \end{itemize}
 
-Each visual element was inspired by descriptions of perceptual anomalies in schizophrenia, such as those categorized into simple, geometric, and complex types \cite{Silverstein2021,Vanommen2019}
+Each visual element in the system was designed based on descriptions of how people with schizophrenia may experience their symptoms. These experiences are often grouped into simple, geometric, and complex visual types \cite{Silverstein2021,Vanommen2019}.
 
-The modularity of the implementation allows for future expansion, including integrating real-world narratives, biometric data feedback, or adapting the system for VR environments.
+The way the system is built makes it easy to expand in the future.
