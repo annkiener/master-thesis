@@ -1,52 +1,126 @@
 \chapter{Methodology}
 \label{ch:method}
 
-\emph{In this section, you should present what you intend to do, why you are doing it this way. Outline your research question in regards to the related work you presented. Explain the intended general architecture, design of your system or interfaces. Try to argument your choices with notions from the state of the art.}
+%\emph{In this section, you should present what you intend to do, why you are doing it this way. Outline your research question in regards to the related work you presented. Explain the intended general architecture, design of your system or interfaces. Try to argument your choices with notions from the state of the art.}
 
-This chapter outlines the methodological approach taken in this thesis to investigate the impact of Mixed Reality (MR) simulations on empathy toward individuals with schizophrenia. Drawing upon insights from the existing literature on immersive technologies and empathy training, this section details the research question, the rationale behind using MR, the design of the MR simulation system, and the approach to evaluating its effectiveness.
 
-\section{Research Objective and Question}
+In this chapter, I present the methodology used to design, implement, and evaluate a MR simulation aimed at increasing empathy toward individuals diagnosed with schizophrenia. Building on the gaps and opportunities identified in the state of the art (Chapter~\ref{ch:background}), this study explores whether a brief MR simulation of symptoms—lasting approximately 4--5 minutes—can significantly influence both \textit{affective} and \textit{cognitive} empathy among medical students. The approach combines immersive technology, tested on medical students which already have experience with patients and know about schizophrenia and its symptoms, and guided debrief to examine how such a simulation may reshape students' perceptions and attitudes toward people with schizophrenia.
 
-As identified in the state of the art, immersive technologies have shown significant potential in mental health education, especially in fostering empathy and understanding toward individuals with schizophrenia. However, the majority of research has focused on Virtual Reality (VR), with relatively fewer studies exploring the potential of Mixed Reality (MR) for this purpose. This thesis seeks to fill that gap by investigating:
+\section{Research Question}
 
-\begin{quote} \textbf{To what extent can a Mixed Reality (MR) simulation enhance cognitive and affective empathy toward individuals with schizophrenia among medical students?} \end{quote}
+The central research question of this project is:
 
-This research builds on studies such as those by Silva et al. (2017) and Krogmeier et al. (2024), which demonstrated that MR simulations can evoke empathy without overwhelming users, thanks to their grounding in real-world environments. 
+\begin{quote}
+\textit{\textbf{Can a short Mixed Reality simulation of schizophrenia symptoms effectively increase both affective and cognitive empathy in medical students, and influence their perception of individuals diagnosed with schizophrenia?}}
+\end{quote}
 
-\section{Rationale for Using Mixed Reality}
+This question emerges from several key insights presented in the state of the art:
 
-Based on the literature review, Mixed Reality (MR) offers several compelling advantages over Virtual Reality (VR) in the context of schizophrenia simulations, making it a particularly suitable choice for this thesis. One of the most important benefits of MR is its ability to provide emotional safety through real-world grounding. Unlike fully immersive VR, which can sometimes overwhelm users with intense sensory input, MR allows participants to remain anchored in their actual environment. This helps reduce the risk of distress that has been reported in VR-based schizophrenia simulations, especially when simulating severe or frightening symptoms \cite{Zare-Bidaki2022}.
+\begin{itemize}
+    \item VR has been shown to enhance affective empathy, but its effects on cognitive empathy are inconsistent \cite{Martingano2021, Ventura2020}.
+    \item MR remains underexplored, yet early studies suggest it can balance immersion and realism, potentially supporting more empathetic outcomes \cite{Silva2017, Krogmeier2024}.
+    \item Ethical concerns require immersive experiences to be framed through knowledge delivered beforehand and reflection/debriefing after the simulation to avoid stigma or stereotype reinforcement \cite{Rueda2020, Ando2011}.
+\end{itemize}
 
-MR also offers higher relatability and engagement by integrating hallucinations and delusional content into familiar, everyday settings, such as a pharmacy, classroom, or living room. This contextualization can enhance the emotional resonance of the experience, as users are more likely to connect with scenarios that resemble their own daily environments \cite{Krogmeier2024}. Rather than experiencing psychotic symptoms in abstract or exaggerated virtual spaces, participants see these symptoms unfold in realistic and meaningful contexts, increasing the perceived authenticity of the simulation.
 
-Furthermore, MR supports a more balanced approach to empathy training by addressing both cognitive and affective components. While VR often elicits strong emotional reactions, MR allows users to emotionally engage with the simulation while still having the cognitive space to process and reflect on what they are experiencing. This dual engagement is particularly valuable in educational settings, where the goal is not only to generate emotional impact but also to foster a deeper understanding of the condition being simulated \cite{Martingano2021, Rueda2020}.
+\section{Using Mixed Reality}
 
-From a technical perspective, MR provides a high degree of flexibility through the use of modern headsets equipped with passthrough functionality, such as the Meta Quest Pro. These devices allow for high-resolution video feeds of the user’s environment, onto which simulated symptoms can be accurately layered in real time. This technology enables the development of dynamic, responsive simulations that feel both immersive and grounded in reality, offering a unique and effective tool for mental health education.
+Based on the literature review, MR offers several advantages over VR in the context of schizophrenia simulations, making it a particularly suitable choice for this thesis. One of the most important benefits of MR is its ability to provide emotional safety through real-world grounding. Unlike fully immersive VR, which can sometimes overwhelm users with intense sensory input, MR allows participants to remain anchored in their actual environment. This helps reduce the risk of distress that has been reported in VR-based schizophrenia simulations, especially when simulating frightening symptoms \cite{Zare-Bidaki2022}.
 
-\section{Simulation Design}
-\emph{move this to the implementation section (?)}
-The Mixed Reality (MR) simulation system developed in this thesis was designed to recreate auditory and visual hallucinations inspired by first-person accounts of psychosis, with the aim of providing an immersive yet emotionally grounded educational experience. The system runs on a Meta Quest 3 headset equipped with passthrough functionality, which allows digital elements to be overlaid onto the user's real-world environment in real time. This creates a hybrid space in which simulated symptoms blend seamlessly into familiar settings like a classroom or home office.
+MR also offers higher relatability and engagement by integrating hallucinations and delusional content into familiar, everyday settings, such as a classroom. This contextualization can enhance the emotional resonance of the experience, as users are more likely to connect with scenarios that resemble their own daily environments \cite{Krogmeier2024}. Rather than experiencing psychotic symptoms in abstract or exaggerated virtual spaces, participants see these symptoms unfold in realistic and meaningful contexts, increasing the perceived authenticity of the simulation.
 
-At the core of the simulation is a orchestrator that delivers hallucinations sometimes even based on user interaction. The experience unfolds in a carefully structured sequence. It begins with auditory hallucinations: users hear unsettling whispers and hostile sentences, designed to evoke feelings of being watched, judged, or threatened—common themes in persecutory delusions. These voices are spatially anchored and vary in tone, emphasizing the sense of psychological intrusion.As the simulation progresses, visual distortions begin to appear. Dark and pulsating stains gradually emerge across the users visual field, disrupting their perception of the environment. The auditory hallucinations continue, now commenting on these visual hallucinations, deepening the immersive experience and creating a multi-sensory representation of psychosis.
+Furthermore, MR supports a more balanced approach to empathy training by addressing both cognitive and affective components. While VR often elicits strong emotional reactions, MR allows users to emotionally engage with the simulation while still having the cognitive space to process and reflect on what they are experiencing. This engagement is particularly valuable in educational settings, where the goal is not only to generate emotional impact but also to foster a deeper understanding of the condition which is being simulated \cite{Martingano2021, Rueda2020}.
 
-In the final stage of the simulation, brightly colored, floating spheres appear above the users head. The voices urge the user to interact with them—repeating instructions until the user does so. Once the user complies, the spheres change color. This simulation draws on phenomenological reports from individuals with schizophrenia. \cite{Vanommen2019}
-
-To support cognitive and ethical processing of this intense experience, the simulation is framed by two educational components. Before the simulation, users receive a short briefing that introduces schizophrenia, explains the diversity of symptoms, and clarifies the pedagogical purpose of the exercise. After the simulation, a guided debrief encourages open reflection, using structured questions to help participants process their emotions, connect the experience to clinical understanding, and critically engage with what they encountered.
-
-The system design draws on established best practices in immersive mental health education, particularly the integration of experiential learning with reflection and context, as recommended by Rueda and Lara (2020) and Zare-Bidaki et al. (2022). This careful balance of sensory immersion, narrative progression, and educational framing aims to foster both empathy and insight while minimizing emotional risk.
+From a technical perspective, MR provides flexibility through the use of modern headsets equipped with passthrough functionality, such as the Meta Quest 3\footnote{Meta Quest 3 is a standalone mixed reality headset developed by Meta Platforms, released in October 2023. For more information, see: \url{https://www.meta.com/quest/quest-3/}}.
+This device enables the user to see their environment, onto which simulated symptoms can be layered in real time. This technology enables the development of dynamic and responsive simulations that feel both immersive and real.
 
 \section{Participants and Procedure}
-The target group for this study consists of medical students in their preclinical or early clinical training, specifically from the University of Health in Fribourg, Switzerland (Haute école de santé Fribourg, HEdS-FR). This population was selected for two primary reasons. First, students at this stage are actively developing their clinical attitudes, including their capacity for empathy toward patients. Second, previous research has shown that empathy training tends to be particularly effective during this formative period in a healthcare professionals education \cite{Hsia2022, Kuhail2022}.
 
-Participation in the study is voluntary, and all participants are recruited through internal communication channels within the university. Before taking part, each participant receives comprehensive information about the study’s objectives, procedures, and potential risks. They are informed of their rights, including the ability to withdraw at any time, and are asked to sign a written consent form confirming their understanding and agreement.
+The target group for this study consists of medical students in their preclinical or early clinical training, specifically from the University of Health in Fribourg, Switzerland (in French: Haute école de santé Fribourg, HEdS-FR). This population was selected for two primary reasons. First, students at this stage are actively developing their clinical attitudes, including their capacity for empathy toward patients. Second, previous research has shown that empathy training tends to be particularly effective during this formative period in a healthcare professionals education \cite{Hsia2022, Kuhail2022}.
 
-The study begins with a pre-test phase, during which participants complete the Jefferson Scale of Empathy (JSE) \cite{Hojat2002} to assess their baseline empathy levels. In addition, they fill out a supplementary questionnaire that includes the Brief Positive and Negative Affect Schedule (B-PANAS) \cite{Boiroux2024}, which measures their current emotional state and perceptions regarding individuals with schizophrenia.
+Participation in the study is voluntary, and all participants are recruited through internal communication channels within the university. Before taking part, each participant receives comprehensive information about the objectives of the study, its procedures, and potential risks. They are informed of their rights, including the ability to withdraw at any time, and are asked to sign a written consent form confirming their understanding and agreement.
 
-Following this, participants undergo the Mixed Reality (MR) simulation, which lasts approximately 4 to 5 minutes. During this time, they are exposed to a carefully designed sequence of auditory and visual hallucinations, situated in a familiar, everyday setting. The aim of the simulation is to offer an immersive experience of psychotic symptoms while maintaining a safe and relatable environment.
+The study is conducted in small groups. A total of five groups, each consisting of six students, participate in the simulation sessions. Within each group, only one student wears the MR headset and experiences the simulated symptoms. The other five students remain in the room during the simulation and are given a specific task by the instructor. Their role is to observe the behavior of the participant wearing the headset, noting any signs of confusion, distraction, or distress. This setup serves two purposes: first, it mirrors real clinical scenarios where healthcare providers must interpret subtle behavioral cues; and second, it allows researchers to explore whether witnessing someone elses simulated experience can also affect empathy and perception from an external, observational perspective.
 
-After completing the simulation, participants take part in a structured post-simulation debriefing session, moderated by faculty members. This reflection phase provides an opportunity to process emotional responses, share thoughts about the experience, and discuss how it relates to clinical practice. This guided reflection is a crucial element of the methodology, helping to contextualize the simulation and support the development of cognitive empathy.
+All six group members—both the headset user and the observers—complete the same set of questionnaires. These include the Jefferson Scale of Empathy (JSE) \cite{Hojat2002} to assess baseline and post-simulation empathy levels, and the Brief Positive and Negative Affect Schedule (B-PANAS) \cite{Boiroux2024} to measure emotional responses and perceptions toward individuals with schizophrenia. The evaluation process is described in more detail in Chapter~\ref{ch:eval}.
 
-To conclude the study, participants repeat the JSE and B-PANAS assessments. These post-tests are used to evaluate changes in empathy, emotional state, and attitudes toward individuals with schizophrenia. Participants are also invited to provide qualitative feedback on the simulation, including its perceived realism, emotional impact, and educational value. This mixed-methods approach ensures a comprehensive evaluation of the MR simulation’s effectiveness in fostering empathy and insight.
+The simulation itself lasts approximately 4 to 5 minutes. During this time, the student wearing the headset is exposed to a carefully sequenced combination of auditory and visual hallucinations, all set within a familiar environment such as a classroom. The goal is to simulate psychotic symptoms in a way that is immersive but safe, and to encourage emotional and cognitive engagement with the experience.
 
-To conclude this chapter, by combining already known MR technology with carefully designed educational framing and post-simulation reflection, this thesis seeks to explore an approach to empathy training in medical education. The methodology builds on known challenges and recommendations from the literature, such as avoiding emotional overload, reinforcing context, and ensuring accurate, respectful depictions of schizophrenia. Through both quantitative and qualitative methods, this study will assess whether MR can provide a safer, more relatable, and more impactful alternative to traditional VR in empathy-focused mental health education.
+Immediately following the simulation, all group members take part in a structured debriefing session moderated by teaching staff. This guided reflection allows participants to discuss what they observed or experienced, process their emotional responses, and relate the exercise to their future clinical work. For the observers in particular, this provides an opportunity to articulate how witnessing the simulation affected their perception of both the symptoms and the individual undergoing them.
+
+After the debriefing, participants once again complete the JSE and B-PANAS questionnaires to assess any changes in empathy levels and emotional responses. They are also invited to provide qualitative feedback on the simulation, including comments on its realism, emotional impact, and educational value. The inclusion of both direct and indirect participants allows the study to assess how empathy might be influenced not only by immersive first-person experiences, but also through empathetic observation—a dimension that has received limited attention in the literature.
+
+To conclude this chapter, by combining known MR technology with carefully structured educational framing, observation-based group dynamics, and post-simulation reflection, this thesis seeks to explore a multi-layered approach to empathy training in medical education. The methodology builds on known challenges and recommendations from the literature, such as avoiding emotional overload, reinforcing context, and ensuring accurate, respectful depictions of schizophrenia. 
+
+\section{Simulation Design}
+
+The MR simulation developed in this thesis was designed to give students an emotional and realistic sense of what it might feel like to experience psychotic symptoms, while still keeping them in their real environment. Unlike VR, which fully replaces the users surroundings, MR allows digital symptoms — like hallucinations or sounds — to appear in the users actual space. % repetitive?
+
+The simulation shows both auditory and visual symptoms, based on real descriptions from people who live with schizophrenia. Users hear critical or unsettling voices and see visual changes with the goal of distracting them. These effects are introduced step by step to reflect how symptoms often build gradually. The aim is not to scare or shock, but to help students connect with the emotional and mental confusion that someone with psychosis might feel.
+
+Because the simulation is only 4 to 5 minutes long, it focuses on giving a short but meaningful experience. It is placed in a familiar environment, which is the classroom, so that the symptoms feel more relatable. This balance is important: the goal is to increase empathy and understanding, not to create fear or reinforce negative stereotypes. % repetitive?
+
+To support this, the simulation is framed by two key points. Before the day of testing, students have already been lectured sometime in their studies on the topic of schizophrenia and also already have pracitcal experience with patients. They also will be briefed about the simulation and what it should show. Afterwards, they take part in a guided debrief, where they can reflect on how they felt, what they learned, and how it might change the way they see or interact with patients. This step is especially important, as it helps students process the experience in a thoughtful way.
+
+The overall design is based on ideas from recent research, which shows that immersive tools work best when combined with education and reflection. Studies by Rueda and Lara (2020) and Zare-Bidaki et al. (2022) stress that simulations should be realistic and meaningful, but also ethically responsible and emotionally safe. This approach follows those recommendations closely, aiming to create a learning experience that supports both emotional connection and critical thinking \cite{Rueda2020,Zare-Bidaki2022}.
+
+\section{Evaluation and Data Collection}
+\label{ch:eval}
+
+To assess the impact of the MR simulation on students empathy and emotional understanding of schizophrenia, this study uses a combination of quantitative self-report measures and reflective feedback. The aim is to capture not only changes in empathy levels, but also students emotional responses and perceptions of the simulations realism and educational value.
+
+Since the study was conducted at a French-speaking institution, all materials, including consent forms, questionnaires and the simulations audio, were provided in French to ensure accessibility and clarity for participants.
+
+\subsection{Jefferson Scale of Empathy (JSE)}
+\label{sec:jse}
+
+The primary tool used to measure empathy is the Jefferson Scale of Empathy (JSE), which is widely applied in medical education and has been shown to reliably measure both affective and cognitive components of empathy \cite{Hojat2002}. The JSE is administered before and after the MR simulation to assess whether the experience has led to measurable changes in students’ empathy levels. The results are analyzed to determine changes in total empathy scores, as well as shifts in cognitive and affective empathy dimensions.
+
+Since the JSE was originally developed in English and no officially validated French version was available for this study, the questionnaire was translated into French by the researcher using a combination of online translation tools and manual adjustments. While care was taken to preserve the meaning and intent of the original items, this translated version has not undergone formal psychometric validation. As such, the use of this adapted French version represents a methodological limitation and should be considered when interpreting the results.
+
+To better align the measurement tool with the goals of this study—namely, to evaluate both cognitive and affective components of empathy in a balanced and time-sensitive way—the full JSE was thematically reviewed and categorized by the author. Based on an in-depth literature review and the conceptual definitions of empathy used in this thesis, each item was classified as either \textit{Cognitive} or \textit{Affective}. Cognitive items reflect an emphasis on understanding the patient’s perspective, thoughts, or non-verbal cues, while affective items relate to emotional awareness, resonance, or the therapeutic value of emotional understanding. A detailed overview of this classification can be found in Appendix~\ref{app:jse}, Table~\ref{tab:jse_classification}.
+
+In order to maintain engagement, a shortened version of the JSE was developed. This version includes 13 items—five reflecting cognitive empathy and 8 reflecting affective empathy—that were selected based on thematic clarity and their alignment with the measurement goals of the study. The item selection are shown in Appendix~\ref{app:jse-short}, Table~\ref{tab:jse_shortened}. % explain why these items?
+
+\subsection{Emotional Response (Positive and Negative Affect)}
+
+To better understand the emotional impact of the simulation, students are also asked to rate the intensity of their own emotions when thinking about people with schizophrenia. This part of the questionnaire is based on a validated French-language version of the Positive and Negative Affect Schedule (PANAS), adapted from Boiroux (2024) \cite{Boiroux2024}. Participants rate each emotion on a 5-point scale (1 = “Pas du tout” to 5 = “Extrêmement”).
+
+The emotions included cover both positive and negative affective states such as:
+
+\begin{quote}
+    \textit{Angoissé(e), Enthousiaste, Honteux(se), Inspiré(e), Intéressé(e), Irrité(e), Craintif(ve), Alerte, Attentif(ve), and Nerveux(se).}
+\end{quote}
+
+This allows for a more nuanced understanding of how the simulation influences students emotional reactions, which can be important in empathy development. The goal is not just to measure how much empathy increased, but also how the experience may have changed the emotional tone with which students think about individuals living with schizophrenia. 
+
+\subsection{Perceptions of the Simulation}
+
+In addition to the JSE and the emotional response, participants which wore the headset, complete a short questionnaire immediately after the simulation, which evaluates their perceptions of the experience. This includes five statements rated on a 7-point Likert scale (1 = “Strongly disagree” to 7 = “Strongly agree”). The items are designed to assess how educational, immersive, and useful the simulation was perceived to be, as well as its potential to increase understanding and empathy. Example items include: \emph{translate to english (?)}
+
+\begin{itemize}
+    \item \textit{La simulation était éducative.}
+    \item \textit{La simulation est un moyen efficace de sensibiliser à la schizophrénie.}
+    \item \textit{La simulation devrait rendre les gens plus compréhensifs à l’égard des personnes atteintes de schizophrénie.}
+\end{itemize}
+
+This helps evaluate how participants interpreted the experience and whether they found it meaningful in a learning context.
+
+%\subsection{Qualitative Reflections (Optional)}
+%Following the post-simulation debriefing, students are encouraged—but not required—to share written or verbal reflections about their experience. These open-ended responses help contextualize the quantitative results and give deeper insight into how students interpret and internalize the simulation. Common themes, such as increased awareness, discomfort, or curiosity, may be used to support interpretation of the data.
+
+Together, the combination of the JSE, perception ratings, emotional intensity scales, and optional qualitative feedback provides a well-rounded view of the simulation’s effectiveness. This multi-method approach is designed to explore whether a brief MR simulation can positively affect both empathy and emotional understanding, while also providing insights into the simulation’s usability and educational value.
+
+\section{Design Choices}
+
+This methodology is directly informed by insights and gaps highlighted in the state of the art:
+
+\begin{itemize}
+    \item MR is used instead of VR to reduce overloading the senses while preserving immersion \cite{Krogmeier2024}.
+    \item Debriefing sessions are included to increase meaningful reflection and avoid stigma \cite{Rueda2020, Ando2011}.
+    \item The simulation content draws on real patient narratives to ensure authenticity and relatability \cite{Zare-Bidaki2022}.
+    \item A short simulation duration enhances feasibility and safety without compromising emotional impact \cite{Formosa2018}.
+\end{itemize}
+
+In summary, this study adopts a structured and ethically responsible MR-based approach to schizophrenia education. The goal is to increase both \textit{affective} and \textit{cognitive} empathy in medical students by situating simulated symptoms in real-world contexts, framed by education and post-reflection. This approach addresses gaps in current VR-centric literature and showcases a rather new method for developing empathy capacity in healthcare students.
 

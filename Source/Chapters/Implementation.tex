@@ -32,88 +32,15 @@ Synchronization across components ensures the user is not overwhelmed with concu
 \end{figure}
 
 
-\begin{landscape}
-    \begin{center}
-    \resizebox{\textwidth}{!}{ 
-    \begin{tikzpicture}[node distance=1.5cm and 2.5cm, every node/.style={font=\small}]
-    \tikzset{
-      block/.style={rectangle, draw=black, fill=yellow!50, rounded corners, minimum height=1.2em, text centered, text width=3.2cm},
-      module/.style={circle, draw=black, fill=blue!30, minimum size=2cm, text centered, align=center},
-      orchestrator/.style={circle, draw=black, fill=black, text=white, minimum size=2.5cm, text centered},
-      arrow/.style={-Stealth, thick}
-    }
-    
-    % Central node
-    \node[orchestrator] (orchestrator) {ORCHESTRATOR};
-    
-    % Top-left: SOUND MANAGER
-    \node[module, above left=5cm and 2.5cm of orchestrator] (sound) {SOUND\\MANAGER};
-    \node[block, above=of sound] (audio) {AUDIO SOURCE};
-    \node[block, left=of sound] (identifier) {IDENTIFIER};
-    \draw[arrow] (orchestrator) -- (sound);
-    \draw[arrow] (audio) -- (sound);
-    \draw[arrow] (identifier) -- (sound);
-    
-    % Top-right: STAINS
-    \node[module, above right=5cm and 2.5cm of orchestrator] (stains) {STAINS};
-    \node[block, above=of stains] (spawnpoint) {SPAWN POINT, RADIUS};
-    \node[block, right=of stains] (numspheres) {NUMBER OF SPHERES};
-    \node[block, below=of stains] (interval) {SPAWN, DISAPPEARANCE INTERVAL};
-    \node[block, below left=of stains] (sphereprefab) {SPHERE PREFAB};
-    \draw[arrow] (orchestrator) -- (stains);
-    \draw[arrow] (spawnpoint) -- (stains);
-    \draw[arrow] (numspheres) -- (stains);
-    \draw[arrow] (interval) -- (stains);
-    \draw[arrow] (sphereprefab) -- (stains);
-    
-    % Bottom-right: DOT MANAGER
-    \node[module, below right=4cm and 2.5cm of orchestrator] (dot) {DOT\\MANAGER};
-    \node[block, right=of dot] (dotprefab) {DOT PREFAB};
-    \node[block, below=of dotprefab] (collision) {COLLISION HANDLING};
-    \node[block, below=of collision] (colorchange) {ON COLLISION ENTER > COLOUR CHANGE};
-    \node[block, below=of dot] (numdots) {NUMBER OF DOTS};
-    \node[block, left=of numdots] (spawndims) {SPAWN WIDTH, HEIGHT, DEPTH};
-    \draw[arrow] (orchestrator) -- (dot);
-    \draw[arrow] (dotprefab) -- (dot);
-    \draw[arrow] (collision) -- (dotprefab);
-    \draw[arrow] (colorchange) -- (collision);
-    \draw[arrow] (numdots) -- (dot);
-    \draw[arrow] (spawndims) -- (dot);
-    
-    % Bottom-center: BACKGROUND AUDIO
-    \node[module, below=5cm of orchestrator] (background) {BACKGROUND\\AUDIO};
-    \node[block, left=of background] (whispers) {WHISPERS};
-    \draw[arrow] (orchestrator) -- (background);
-    \draw[arrow] (whispers) -- (background);
-    
-    % Bottom-left: DARKEN SCREEN
-    \node[module, below left=4cm and 2.5cm of orchestrator] (darken) {DARKEN\\SCREEN};
-    \node[block, left=of darken] (darkpanel) {DARK PANEL};
-    \node[block, below=of darkpanel] (fadeduration) {FADE DURATION};
-    \draw[arrow] (orchestrator) -- (darken);
-    \draw[arrow] (darkpanel) -- (darken);
-    \draw[arrow] (fadeduration) -- (darken);
-    
-    % Note repositioned far top right
-    \node[block, right=8.5cm of orchestrator, text width=4cm, align=left, font=\itshape\small] (note) {Play sound repeatedly if orders are not obeyed};
-    \draw[->, dashed] (note.west) to[bend right=20] (stains.east);
-    
-    \end{tikzpicture}
-    }
-    \end{center}
-    \end{landscape}
-    
+\subsection{Auditory Hallucinations}
 
-    \subsection{Auditory Hallucinations}
-
-    The auditory effects in the system are handled by the \textit{SoundManager.cs} script. Audio files are grouped by voice type, making it easy to play back different kinds of hallucination samples. These voices include phrases that sound accusatory, confusing, or frightening—reflecting common real-world descriptions of auditory hallucinations.
+The auditory effects in the system are handled by the \textit{SoundManager.cs} script. Audio files are grouped by voice type, making it easy to play back different kinds of hallucination samples. These voices include phrases that sound accusatory, confusing, or frightening—reflecting common real-world descriptions of auditory hallucinations.
     
-    The voices were generated using ElevenLabs, a text-to-speech AI engine \cite{elevenlabs}. Each one was created with a specific emotional tone in mind: one voice sounds scared and almost shouting, another is snooty and mean, and the third sounds lost and desperate. These voices are played at key moments to create a stronger sense of fear, confusion, or paranoia. Their timing is matched with visual effects to create a more immersive and realistic experience of multisensory hallucinations.
+The voices were generated using ElevenLabs, a text-to-speech AI engine \cite{elevenlabs}. Each one was created with a specific emotional tone in mind: one voice sounds scared and almost shouting, another is snooty and mean, and the third sounds lost and desperate. These voices are played at key moments to create a stronger sense of fear, confusion, or paranoia. Their timing is matched with visual effects to create a more immersive and realistic experience of multisensory hallucinations.
     
-    In addition, the \textit{ObjectCollision.cs} script adds interactive audio that loops until the user physically interacts with an object. This mimics the frustrating and unpredictable nature of hallucinations, as often described by people experiencing psychosis.
+In addition, the \textit{ObjectCollision.cs} script adds interactive audio that loops until the user physically interacts with an object. This mimics the frustrating and unpredictable nature of hallucinations, as often described by people experiencing psychosis.
     
     
-
 \subsection{Visual Hallucinations}
 Visual components are diversified to simulate various hallucination types:
 \begin{itemize}
