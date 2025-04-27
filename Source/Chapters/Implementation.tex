@@ -53,3 +53,36 @@ Visual components are diversified to simulate various hallucination types:
 Each visual element in the system was designed based on descriptions of how people with schizophrenia may experience their symptoms. These experiences are often grouped into simple, geometric, and complex visual types \cite{Silverstein2021,Vanommen2019}.
 
 The way the system is built makes it easy to expand in the future.
+
+\section{Challenges During Implementation} \emph{Discuss the main challenges encountered during the simulation development and how they were overcome. Highlight important coding aspects where appropriate.}
+
+Despite careful planning, several significant challenges emerged during the development of the simulation:
+
+\subsection{Audio Loop Management} Initially, each interactive sphere instantiated its own sound playback. This led to multiple overlapping sound loops, significantly breaking immersion and user experience. The problem arose because the audio logic was not centralized — each sphere's ObjectCollision component independently triggered audio playback upon spawning.
+
+To solve this issue, a shared audio management system was developed, which is a static AudioSource and coroutine created within ObjectCollision.cs. This means that only one looped sound source exists, and it is globally stopped when a user interacts with any sphere.
+
+A key logic excerpt illustrating this centralization is:
+
+\begin{quote} \small \texttt{if (sharedAudioSource == null) { sharedAudioSource = ...; coroutineHost = this; repeatCoroutine = coroutineHost.StartCoroutine(RepeatAudio());}} \end{quote}
+
+This ensures no duplicate sounds occur, even with multiple spheres present.
+
+\subsection{Hand Interaction and Finger Identification} 
+A second major challenge was accurately detecting when a user touched a sphere. Initially, an additional \textit{poke interaction} module was mistakenly integrated alongside Unity's built-in collision detection. This redundant system caused conflicting behavior and unpredictable touch responses. Upon deeper inspection, it was discovered that Unity’s hand collision system already assigns specific identifiers to each fingertip collider, such as \textit{HandIndex1} for the index finger. Reliable detection could therefore be implemented simply by checking the collision object's name during a collision event, rather than adding redundant interaction modules.
+
+\begin{quote} \small \texttt{if (collision.gameObject.name.Contains("HandIndex1")) { ... }} \end{quote}
+
+By removing unnecessary modules and using direct collision name checks, touch interactions became smooth and predictable, immediately changing the spheres color and stopping the looping sound.
+
+\subsection{Hardware-Related Sound Privacy} During preliminary testing, the built-in speakers of the Meta Quest 3 were found to be too loud, leaking audio to the entire room and affecting non-participant observers. To address this, PhoneLook bone-conduction headphones were integrated into the simulation setup. This had the advantage that the audio is transmitted privately to the participant without occluding ambient sounds.
+It also ensures immersive simulatin while respecting privacy and the testing environment.
+
+\subsection{Spatial Placement of Sound Sources} Another significant challenge was the spatial arrangement of audio sources within the 3D simulation environment. Initially, it was difficult to orient myself correctly in Unityss Scene View, making it unclear where the sounds would originate from relative to the user's position. Proper placement was essential to create a convincing spatial auditory experience, because sounds had to feel anchored in specific locations in the environment. As the user moved, the sounds needed to remain fixed in space, enhancing realism and immersion.
+
+To solve this, I invested time to become familiar with Unity's camera controls and 3D scene navigation.Then, the sound sources were distributed strategically across different coordinates, ensuring that different hallucinated voices would come from distinct spatial directions.
+
+An example of the 3D placement of the sound sources in the Unity scene is shown in \autoref{fig:sound_sources}.
+
+\begin{figure}[h!] \centering \includegraphics[width=0.8\textwidth]{../../Figures/unity-scene.png} \caption{Placement of spatial sound sources in the Unity scene for the hallucination simulation. Each speaker icon represents a sound source emitting a hallucination voice.} \label{fig:sound_sources} \end{figure}
+
