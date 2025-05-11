@@ -49,31 +49,26 @@ The orchestrator also manages the timing of the visual effects, ensuring that th
 
 
 \subsection{Auditory Hallucinations}
-The auditory effects in the system are handled by the \texttt{SoundManager.cs} script. Audio files are grouped by voice type, making it easy to play back different kinds of hallucination samples. The script for these confrontational phrases was carefully drafted to include a range of emotional tones, from accusatory to confused. This variety was designed to evoke a spectrum of feelings in the user, from discomfort to fear. The voices were generated using ElevenLabs, a text-to-speech AI engine \cite{elevenlabs}, which allowed for the creation of distinct emotional tones that would be difficult to achieve with traditional voice acting.
+The auditory effects in the system are handled by the \texttt{SoundManager.cs} script. Audio files are grouped by voice type, making it easy to play back different kinds of hallucination samples. The script for these confrontational phrases was carefully drafted to include a range of emotional tones, from accusing to confused. This variety was designed to evoke a spectrum of feelings in the user, from discomfort to fear. The voices were generated using ElevenLabs, a text-to-speech AI engine \cite{elevenlabs}, which allowed for the creation of distinct emotional tones that would be difficult to achieve with traditional voice acting. Moreover, their timing is matched with visual effects to create a more immersive and realistic experience of multisensory hallucinations.
 
 Important to mention as well is the close collaboration with the \textit{Haute école de santé Fribourg, HEdS-FR}, with whom the script was discussed with and the tone of the voices was improved upon multiple meetings and discussions we had. The team provided valuable feedback on the emotional tone and content of the voice samples, ensuring that they accurately reflected the experiences of individuals with schizophrenia.
-
-Each voice was created with a specific emotional tone in mind: one voice sounds scared and almost shouting, another is mean, and the third sounds lost and desperate. These voices are played at key moments to create a stronger sense of fear, confusion, or paranoia. Their timing is matched with visual effects to create a more immersive and realistic experience of multisensory hallucinations.
-
-\emph{make separate section for object collision}
-    
-In addition, the \texttt{ObjectCollision.cs} script adds interactive audio that loops until the user physically interacts with an object. This mimics the frustrating and unpredictable nature of hallucinations, as often described by people experiencing psychosis.
-    
     
 \subsection{Visual Hallucinations}
-Visual components are diversified to simulate various hallucination types:
-\begin{itemize}
-    \item Wave Deformation: \texttt{DynamicWaveDeformation.cs} distorts object surfaces using transformations, creating a pulsating geometry that mimics perceptual distortions in psychosis.
-    \item Gradual Screen Darkening: \texttt{ScreenDarkener.cs} overlays a semi-transparent black UI panel to simulate the narrowing of visual perception or "tunnel vision," often reported during intense hallucinations.
-    \item Dot Fields: \texttt{DotManager.cs} creates random red and blue dots that appear above the user. These dots represent chaotic visual input or visual noise, similar to the floating patterns often described by people experiencing psychosis.
-    \item Pulsating Spheres: The Orchestrator periodically spawns spherical objects, creating a feeling of presence and spatial invasion. Their randomness and impermanence reflect transient hallucinations and visual object anomalies.
-\end{itemize}
 
-Each visual element in the system was designed based on descriptions of how people with schizophrenia may experience their symptoms. These experiences are often grouped into simple, geometric, and complex visual types \cite{Silverstein2021,Vanommen2019}.
+The simulation includes several visual effects designed to represent different kinds of hallucinations, based on how people with schizophrenia have described their experiences. One effect, created using the \texttt{DynamicWaveDeformation.cs} script, makes the surfaces of objects appear to ripple and shift. This gives them a wavy, moving look that reflects how perception can feel distorted during hallucinations.
 
-The way the system is built makes it easy to expand in the future.
+Another visual, controlled by \texttt{ScreenDarkener.cs}, slowly darkens the edges of the screen over time. This creates a tunnel vision effect, simulating the sense of the world closing in that some people report during intense episodes.
 
-\section{Challenges During Implementation} \emph{Discuss the main challenges encountered during the simulation development and how they were overcome. Highlight important coding aspects where appropriate.}
+The \texttt{DotManager.cs} script creates random red and blue dots that float above the user. These are meant to show visual noise—unstructured, scattered visuals like the flickering lights or colored shapes that people often describe. In addition, the \texttt{Orchestrator.cs} script causes glowing spheres to appear and disappear around the user. These spheres are meant to represent sudden visual objects or presences that seem real for a short time, adding to the feeling of confusion or invasion of personal space.
+
+All these visuals are based on research that groups hallucinations into simple effects like light flashes, geometric patterns, or more complex shapes and objects \cite{Silverstein2021,Vanommen2019}. The system is built to be flexible, so more visual effects can easily be added in future versions.
+
+\subsection{Interaction Logic}
+The interaction logic is primarily handled by the \texttt{ObjectCollision.cs} script. This script detects when the user touches one of the spheres and triggers a response. The interaction is designed to be intuitive and immediate, with the sphere changing color and stopping its sound loop upon contact.  
+In addition, the script adds interactive audio that loops until the user physically interacts with an object. This mimics the frustrating and unpredictable nature of hallucinations, as often described by people experiencing psychosis.
+
+\section{Challenges During Implementation} 
+\emph{Discuss the main challenges encountered during the simulation development and how they were overcome. Highlight important coding aspects where appropriate.}
 
 Despite careful planning, several significant challenges emerged during the development of the simulation:
 
@@ -104,71 +99,4 @@ To solve this, I invested time to become familiar with Unity's camera controls a
 An example of the 3D placement of the sound sources in the Unity scene is shown in \autoref{fig:sound_sources}.
 
 \begin{figure}[h!] \centering \includegraphics[width=0.8\textwidth]{../../Figures/unity-scene.png} \caption{Placement of spatial sound sources in the Unity scene for the hallucination simulation. Each speaker icon represents a sound source emitting a hallucination voice.} \label{fig:sound_sources} \end{figure}
-
-\section{Simulation Timeline}
-This section describes the sequence of events in the hallucination simulation and explains how they are implemented in the \texttt{Orchestrator.cs} script. The simulation is structured as a timed progression of auditory and visual events designed to immerse the user gradually into an experience resembling psychotic hallucinations.
-
-\subsection{Overview}
-
-The simulation begins with a 60-second delay, intended to build tension. During this period, a persistent whispering sound begins and continues throughout the entire session:
-
-\begin{lstlisting}[language=C++, caption={Start of Orchestration}, label={lst:orchestrator_start}]
-yield return new WaitForSeconds(60f);
-PlayWhispers();  // Starts looping whisper audio
-\end{lstlisting}
-
-The visual field also begins to darken, setting the stage for perceptual distortions.
-
-\subsection{Auditory Sequence}
-
-A series of voice clips play at timed intervals, increasing in emotional intensity. The voices progress from instructional to accusatory and paranoid, matching the descriptions seen in schizophrenia symptomatology.
-
-\begin{lstlisting}[language=C++]
-yield return new WaitForSeconds(5f);
-soundManager.PlaySound("1");  // "Listen to what the teacher says"
-
-yield return new WaitForSeconds(15f);
-soundManager.PlaySound("2");  // "Do you know the answer?"
-
-yield return new WaitForSeconds(10f);
-soundManager.PlaySound("3");  // "You're really stupid"
-\end{lstlisting}
-
-This sequence continues with carefully timed emotional escalation, encouraging an increasingly unsettled user response.
-
-\subsection{Visual Hallucination Simulation}
-
-At the 120-second mark, spheres begin spawning in the user's environment. These act as visual distractors and elements of interaction. The spheres appear one at a time at random positions near the user, creating a spatially disorienting experience.
-
-\begin{lstlisting}[language=C++]
-for (int i = 0; i < sphereCount; i++) {
-    yield return new WaitForSeconds(spawnInterval);
-    SpawnSphere();
-}
-\end{lstlisting}
-
-Each sphere may also emit sound that loops until the user touches it, enhancing the immersive multisensory interaction. These voices are triggered via the \texttt{ObjectCollision.cs} script.
-
-\subsection{Visual Noise and Dots}
-
-Midway through the simulation, pulsating dark spots begin appearing in the user's visual field, implemented through the \texttt{DotManager}. This visual “noise” mimics simple hallucinations like flickering lights or visual snow.
-
-\begin{lstlisting}[language=C++]
-DotsAppear();
-soundManager.PlaySound("8");  // "Look up. There is something there"
-\end{lstlisting}
-
-Later, the dots slowly disappear one after another, mimicking the fading nature of some visual symptoms.
-
-\begin{lstlisting}[language=C++]
-DotsDisappear();
-soundManager.PlaySound("12");  // "Look behind you! Be careful!"
-\end{lstlisting}
-
-
-\subsection{Summary}
-
-The simulation's orchestration blends auditory hallucinations, visual distortions, and interactive stimuli to create a progressive and layered experience. Each element is purposefully timed and escalated to mirror the onset and intensification of psychotic symptoms in schizophrenia. The synchronization of stimuli—using coroutines and a centralized control script—ensures that users are not overwhelmed early, but gradually drawn into a multi-sensory representation of hallucinatory experience.
-
-
 
