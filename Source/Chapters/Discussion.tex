@@ -1,8 +1,6 @@
 \chapter{Discussion}
 \label{ch:discussion}
 
-\emph{In this section, you should discuss your result and your work. Summarize and discuss your results,  discuss your initial choices and compare with other works from the state of the art. How do you compare (if you can) ? Discuss your research questions in the light of your results. }
-
 This project set out to explore whether a short MR simulation could help increase both cognitive and emotional empathy among medical students by immersing them in the experience of schizophrenia symptoms. After designing, implementing, and evaluating the simulation through a carefully planned user study, several key observations emerged that are worth reflecting on — both in terms of what worked well and what could be improved in future versions.
 
 \section{Interpretation of Changes}
@@ -10,13 +8,15 @@ This project set out to explore whether a short MR simulation could help increas
 commentary on findings, potential explanations for lack or presence of effect, consideration of variability among participants, comment on potential improvements
 
 
-While no significant change was observed in the overall empathy score, subtle shifts were detected in emotion-specific responses. For example, participants reported feeling slightly more “distressed” and less “ashamed” when thinking about individuals with schizophrenia post-intervention. However, these changes were not statistically robust in this sample.
+While no significant change was observed in the overall empathy score, subtle shifts were detected in emotion-specific responses. For example, participants reported feeling slightly more “distressed” and less “ashamed” when thinking about individuals with schizophrenia post-intervention. However, none of these changes were not statistically robust in this sample.
 
-Several possible explanations exist:
+Several possible explanations exist for the lack of significant change in empathy scores:
 \begin{itemize}
   \item A \textbf{ceiling effect} may have limited sensitivity, as pre-evaluation empathy scores were already high.
   \item The \textbf{short duration} between evaluations may not have allowed deeper attitude changes to form.
   \item Emotional responses may be more \textbf{situational or reactive} and less stable than overall empathy attitudes.
+  \item Individuals participation was \textbf{variable}, but for the most part they did not interact a lot with the simulation, which may have limited the potential for empathy growth.
+  \item Interesting thoughts or reflections were only shared during the \textbf{debriefing session}, which have not been captured in the quantitative measures.
 \end{itemize}
 
 Further qualitative feedback could provide richer insight into participant experiences.
@@ -29,39 +29,70 @@ they were not able to focus on the task, which is a good thing, but we should've
 the stains were actually useless
 small sample size and lack of statistical power may have masked potential effects,
 
-\subsection{Quantitative and Qualitative Outcomes}
 
-The pre- and post-simulation scores showed trends that support the initial hypothesis — that MR simulations can help increase both cognitive and affective empathy. While the sample size was relatively small, the combination of quantitative measures (like the Jefferson Scale of Empathy and B-PANAS) with qualitative feedback from debriefing sessions offered a well-rounded picture. Participants described the experience as eye-opening and emotionally engaging. Some said it changed the way they would approach patients with schizophrenia in the future — a key educational outcome.
-
+\paragraph{Qualitative outcomes}
+While the sample size was relatively small, the combination of quantitative measures (JSE and B-PANAS) with qualitative feedback from debriefing sessions offered a well-rounded picture. Participants described the experience as eye-opening and emotionally engaging. Some said it changed the way they would approach patients with schizophrenia in the future — a key educational outcome.
+\vspace{1em}
 These responses reflect similar results found in earlier empathy studies using VR tools, such as those by Hsia et al. and Formosa et al., but they also highlight how MR may provide a more grounded and ethically sound alternative to full immersion \cite{Hsia2022, Formosa2018}.
 
-\subsection{Emotional Impact Without Harm}
+\paragraph{Emotional Impact}
 
 Participants reported a strong emotional reaction to the simulation — not because it was frightening or traumatic, but because it felt confusing, intrusive, and unsettling. These were exactly the emotions the simulation aimed to evoke, reflecting how people with schizophrenia often describe their experience of hallucinations. Importantly, the simulations brief duration and real-world context helped to keep this emotional intensity within a safe and manageable range.
 
-As noted in the literature, simulations like this work best when they are emotionally impactful but ethically grounded. The decision to include debriefing steps after the simulation helped frame the experience in a responsible way, encouraging participants to reflect rather than simply react \cite{Rueda2020, Ando2011}.
+\vspace{1em}
 
-\subsection{Empathy Through Experience and Observation}
+As noted in the literature, simulations like this work best when they are emotionally impactful but one needs to make sure to keep the user still in their 'real' enviornment. The decision to include debriefing steps after the simulation helped frame the experience in a responsible way, encouraging participants to reflect rather than simply react \cite{Rueda2020, Ando2011}.
 
-Another interesting finding is the role of observers — students who watched the simulation without wearing the headset. While most empathy training tools focus on the first-person experience, this study showed that observers also reported emotional and perceptual changes. Observing a peer struggle with hallucinations seemed to create a sense of shared vulnerability and empathy. This aligns with research suggesting that empathy can also grow through observation, not just direct experience \cite{Formosa2018}.
+\paragraph{Observation}
 
-This has important implications: in educational settings where not every student can use a headset, it may still be valuable to have them witness the experience. Combining first-person and observer-based empathy learning could be a promising direction for future training tools.
+Another interesting finding is the role of observers — students who watched the simulation without wearing the headset. While most empathy training tools focus on the first-person experience, this study showed that observers also show potential to have  emotional and perceptual changes. Observing a peer struggle after the simulation during the debrief, seemed to create a sense of shared vulnerability and empathy. This aligns with research suggesting that empathy can also grow through observation, not just direct experience \cite{Formosa2018}.
+\vspace{1em}
+
+This has important implications: in educational settings were not every student can use a headset, it may still be valuable to have them witness the experience. Combining first-person and observer empathy learning could be a promising direction for future training tools. However, it can be assumed that the depth of emotional engagement and cognitive empathy may differ between those who directly experience the simulation and those who observe it. This could be an area for further research, particularly in how to best integrate observer roles into empathy training. 
+
+\vspace{1em}
+
+Furthermore, the design of the simulation itself may have influenced these outcomes. In hindsigth, the choice to assume the user will be able look around and interact with the environment was perhaps too ambitious. Many participants reported that they were ashamed to interact in front of their peers or that they tried so much to ignore the auditory hallucinations and focus on their task, which may have limited their ability to engage fully with the simulation. This suggests that future iterations could benefit from more structured tasks or auditory hallucinations to encourage deeper interaction with the environment.
 
 
 \subsection{Comparison with State of the Art}
-The findings align with some existing literature on empathy training, particularly in the context of schizophrenia simulations. While previous studies have shown that immersive experiences can enhance empathy, the results here suggest that the specific design and implementation of the simulation play a crucial role in determining outcomes.
-For instance, while some VR-based studies reported significant increases in empathy scores \cite{Martingano2021, Ventura2020}, the current MR approach did not yield the same level of change. This may be due to differences in simulation design, duration, or participant engagement levels.
-Additionally, the lack of significant change in cognitive empathy contrasts with findings from other studies that have successfully enhanced both affective and cognitive empathy through immersive experiences \cite{Rueda2020, Ando2011}. This discrepancy highlights the need for further exploration into how different modalities (MR vs. VR) and content delivery methods impact empathy outcomes.
+The findings align with some existing literature on empathy training, particularly in the context of schizophrenia simulations. While previous studies have shown that immersive experiences can enhance empathy, the results here suggest that the specific design and implementation of the simulation play a crucial role in determining outcomes. For instance, while some VR-based studies reported significant increases in empathy scores \cite{Martingano2021, Ventura2020}, the current MR approach did not yield the same level of change. This may be due to the reasons stated above.
+
+\vspace{1em}
+
+Additionally, the lack of significant change in cognitive empathy contrasts with findings from other studies that have successfully enhanced both affective and cognitive empathy through immersive experiences \cite{Rueda2020, Ando2011}. This discrepancy highlights the need for further exploration into how different realities (eg. MR or VR) impact empathy outcomes.
 
 
-\section{Limitations and Lessons}
+\section{Limitations}
 
 Despite its strengths, the study had some limitations. The most obvious is the rather small participant group (29 students), which makes it difficult to generalize the results. Additionally, the French version of the Jefferson Scale of Empathy used in the study was translated by the author and not formally validated, which could affect reliability.
 
-Moreover, while MR provides a strong sense of realism, it still cannot fully simulate the unpredictable, chaotic nature of schizophrenia symptoms. Some participants mentioned that they felt like they were acting or playing a role, rather than truly experiencing psychosis. This points to a challenge faced by all simulation-based education: no matter how immersive, it remains a simulation.
+\vspace{1em}
 
-Finally, while observers appeared to benefit emotionally, it is still unclear how their experiences compare in depth and quality to those who wore the headset. Future studies could explore this further with larger sample sizes and long-term follow-ups.
+Moreover, while MR provides a strong sense of realism, it still cannot fully simulate the unpredictable, chaotic nature of schizophrenia symptoms. This points to a challenge faced by all simulation-based education: no matter how immersive, it remains a simulation. Another issue could have been the short time between pre- and post-evaluations. While this was intended that participants were not biased by eachother and could evaluate strictly the simulation, it may not have allowed enough time for deeper cognitive or emotional changes to take effect. Longer-term follow-up evaluations could provide more insight into the lasting impact of the simulation.
+\vspace{1em}
 
-\section{Future Opportunities}
+Finally, while some observers appeared to benefit emotionally after the debrief, it is still unclear how their experiences compare in depth and quality to those who wore the headset. Future studies could explore this further with larger sample sizes.
 
-This project only scratches the surface of what MR can offer in the field of empathy training. There is also potential to expand the simulation design: adding real storylines or voice personalization could make the experience even more powerful. And finally, pairing simulations like this with classroom teaching and patient interaction could create a holistic training model that enriches the experience.
+
+\section{Future Directions}
+
+This project raised many valuable questions and ideas for how mixed-reality simulations could be improved and explored further in the future. Although the simulation showed promise, there are several ways to build on these findings and develop the experience more effectively for future educational use.
+
+First, the simulation design could be improved to encourage more interaction. Many participants reported that they felt hesitant or even embarrassed to move around or interact with the virtual environment, especially while others were watching. This limited how deeply they could engage with the experience. In future versions, it may help to include clearer guidance or more structured tasks that require the user to look around, respond to specific elements, or make choices during the simulation. This could help draw users more fully into the scenario and allow for a stronger emotional and cognitive response.
+
+\vspace{1em}
+
+Second, future studies should consider running the simulation with larger groups of students. A bigger sample size would make it easier to see whether small changes are meaningful or just due to chance. 
+
+It could also be useful to gather follow-up data some time after the simulation—days or even weeks later. This would help to understand whether the effects of the simulation last beyond the initial emotional impact. Empathy is a complex skill that may take time to change, so longer-term evaluation would give a clearer picture of how the simulation influences students attitudes and behaviors.
+
+\vspace{1em}
+
+In addition, future versions could include more qualitative methods, such as open-ended interviews or written reflections. These would allow participants to express their reactions in more detail, giving insight into how the experience affected them personally. This would also help explain why some people seemed strongly affected while others were not.
+
+Finally, future studies should pay close attention to the experience of observers. While most empathy simulations focus on first-person immersion, this study showed that simply watching someone else go through the experience can also have an emotional impact and potentially grow the understanding of how a person with such symptom could behave. Exploring ways to involve observers more actively, potentially through guided reflection or group discussion, could make the simulation more effective for everyone in the room, not just the person wearing the headset.
+
+\vspace{1em}
+
+Overall, the results of this project point to the potential of mixed reality tools for empathy education. With a few design improvements, more structured tasks, and thoughtful follow-up methods, this approach could be a powerful addition to medical and psychological training programs.
