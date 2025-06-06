@@ -264,7 +264,7 @@ Together, these two systems—floating dots and interactive auditory element of 
 \section{Challenges During Implementation} 
 Despite careful planning, several significant challenges emerged during the development of the simulation:
 
-\subsection{Audio Loops} 
+\paragraph{Audio Loops} 
 Initially, each interactive sphere instantiated its own sound playback. This led to multiple overlapping sound loops, which had to be fixed. The problem arose because the audio logic is not centralized — each sphere's ObjectCollision component independently triggered audio playback upon spawning. For example, if five spheres were instantiated, each would play its own sound, leading to overlapping audio. The audio would then only stop, if all five spheres were touched, which is not the intended behavior.
 
 To solve this issue, a shared audio management system is developed, which is a static AudioSource and coroutine created within \texttt{ObjectCollision.cs}. This means that only one looped sound source exists, and it is globally stopped when a user interacts with any sphere.
@@ -275,18 +275,18 @@ A key logic excerpt illustrating this centralization is:
 
 This ensures no duplicate sounds occur, even with multiple spheres present.
 
-\subsection{Finger Interaction} 
+\paragraph{Finger Interaction} 
 A second major challenge was accurately detecting when a user touched a dot. Initially, an additional \textit{poke interaction} module was mistakenly integrated alongside the already built-in collision detection by Unity. This redundant system caused conflicting behavior and unpredictable touch responses. Upon deeper inspection, it was discovered that Unitys hand collision system already assigns specific identifiers to each fingertip collider, such as \textit{HandIndex1} for the index finger. Reliable detection could therefore be implemented simply by checking the collision object's name during a collision event, rather than adding redundant interaction modules.
 
 \begin{quote} \small \texttt{if (collision.gameObject.name.Contains("HandIndex1")) { ... }} \end{quote}
 
 By implementing this and removing the redundant poke interaction, the color changing is a smooth process and the finger identification also worked.
 
-\subsection{Loud Audio} 
+\paragraph{Loud Audio} 
 During preliminary testing, the built-in speakers of the Meta Quest 3 were found to be too loud, leaking audio to the entire room and were being heard by observers. To address this, PhoneLook bone-conduction headphones\footnote{\href{https://www.phonelook.ch/de/stylische-kabellose-bluetooth-knochenleitungs-kopfhorer-fur-sport-laufen-radfahren-fitness-schwarz.html}{phonelook.ch – bone conduction headphones}} were integrated into the simulation setup. This had the advantage that the audio is transmitted privately to the participant without occluding ambient sounds.
 It also ensures immersive simulatin while respecting privacy and the testing environment.
 
-\subsection{Spatial Placement of Audio } 
+\paragraph{Spatial Placement of Audio } 
 Another significant challenge was the spatial arrangement of audio sources within the simulation environment. Initially, it was difficult to orient myself correctly in Unityss Scene View, making it unclear where the sounds would originate from relative to the user position. Proper placement was essential to create a convincing spatial auditory experience, because sounds had to feel anchored in specific locations in the environment. As the user moved, the sounds needed to remain fixed in space, enhancing realism and immersion.
 
 To solve this, I invested time to become familiar with Unity's camera controls and 3D scene navigation.Then, the sound sources were distributed strategically across different coordinates, ensuring that different hallucinated voices would come from distinct spatial directions.
