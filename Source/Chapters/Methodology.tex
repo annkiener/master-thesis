@@ -1,11 +1,11 @@
 \chapter{Methodology}
 \label{ch:method}
 
-In this chapter, I present the methodology used to design, implement, and evaluate a Mixed Reality (MR) simulation aimed at increasing empathy toward individuals diagnosed with schizophrenia. Building on the gaps and opportunities identified in the state of the art (Chapter~\ref{ch:background}), this study explores whether a brief MR simulation of symptoms—lasting approximately 3 to 4 minutes—can significantly influence both \textit{affective} and \textit{cognitive} empathy among medical students. The approach combines immersive technology, tested on medical students which already have experience with patients and know about schizophrenia and its symptoms, and guided debrief to examine how such a simulation may reshape students' perceptions and attitudes toward people with schizophrenia.
+In this chapter presents the methodology used to design, implement, and evaluate a Mixed Reality (MR) simulation aimed at increasing empathy toward individuals diagnosed with schizophrenia. Building on the gaps and opportunities identified in the state of the art (Chapter~\ref{ch:background}), this study explores whether a brief MR simulation of symptoms—lasting approximately 3 to 4 minutes—can significantly influence both \textit{affective} and \textit{cognitive} empathy among medical students. The approach combines immersive technology, tested on medical students which already have experience with patients and know about schizophrenia and its symptoms, and guided debrief to examine how such a simulation may reshape students' perceptions and attitudes toward people with schizophrenia.
 
 \section{Research Question}
 
-The central research question of this project is:
+The central research question of this thesis is:
 
 \begin{quote}
 \textit{\textbf{Can a short Mixed Reality simulation of schizophrenia symptoms effectively increase both affective and cognitive empathy in medical students, and influence their perception of individuals diagnosed with schizophrenia?}}
@@ -21,7 +21,7 @@ This question emerges from several key insights presented in the state of the ar
 
 \section{Using Mixed Reality}
 
-Based on the literature review, MR offers several advantages over VR in the context of schizophrenia simulations, making it a particularly suitable choice for this thesis. One of the most important benefits of MR is its ability to provide emotional safety through the feeling of being in the real world. Unlike fully immersive VR, which can sometimes overwhelm users with intense sensory input, MR allows participants to remain grounded in their actual environment. This helps reduce the risk of distress that has been reported in VR-based schizophrenia simulations, especially when simulating frightening symptoms \cite{Zare-Bidaki2022}.
+Based on the literature review, MR offers several advantages over VR in the context of schizophrenia simulations, making it a particularly suitable choice for this thesis. One of the most important benefits of MR is its ability to provide emotional safety through the feeling of being in the real world. Unlike fully immersive VR, which can sometimes overwhelm users with intense sensory input and extract them from the real world, MR allows participants to remain grounded in their actual environment. This helps reduce the risk of distress that has been reported in VR-based schizophrenia simulations, especially when simulating frightening symptoms \cite{Zare-Bidaki2022}.
 
 MR also offers higher relatability and engagement by integrating hallucinations and delusional content into familiar, everyday settings, such as a classroom. This contextualization can enhance the emotional resonance of the experience, as users are more likely to connect with scenarios that resemble their own daily environments \cite{Krogmeier2024}. Rather than experiencing psychotic symptoms in abstract or exaggerated virtual spaces, participants see these symptoms unfold in realistic and meaningful contexts, increasing the perceived authenticity of the simulation.
 
@@ -33,8 +33,9 @@ Furthermore, MR supports a more balanced approach to empathy training by address
 
 From a technical perspective, MR provides flexibility through the use of modern headsets equipped with passthrough functionality, such as the Meta Quest 3\footnote{Meta Quest 3 is a standalone mixed reality headset developed by Meta Platforms, released in October 2023. For more information: \url{https://www.meta.com/quest/quest-3/}}. This device enables the user to see their environment, onto which simulated symptoms can be layered in real time. This technology enables the development of dynamic and responsive simulations that feel both immersive and real.
 
+However, it is important to acknowledge certain limitations inherent in the current implementation. Notably, the inability to observe the headset user's eyes from the outside poses a significant challenge for inducing genuinely "weird" or "reactive" behavior. This is because direct eye contact and generally facial cues are incredibly important for realistic social interactions.
 
-\section{Strategy}
+\section{Design}
 
 \paragraph{Simulation Content} The content of the MR simulation was designed to reflect commonly reported auditory and visual hallucinations described by individuals diagnosed with schizophrenia. The structure was carefully sequenced to build in intensity over a 3--4 minute duration, beginning with subtle perceptual changes and and then building up in more overt, unsettling symptoms. To reflect auditory hallucinations, voice content was adapted from clinical interviews and voice-hearing simulations (e.g., the Hearing Voices Curriculum \cite{Chaffin2013}), grouped into twelve distinct sections with voices that represent different thematic elements such as confusion, fear, and paranoia.
 
@@ -46,7 +47,7 @@ The visual components were inspired by data from clinical literature. Commonly r
 
 The chosen visual hallucinations were namely dark stains, pulsating in the visual field of the user, and colored dots that appear and can be interacted with. Furthermore, the user will have a darker field of vision which represents a delusion, sort of a "tunnel vision". These elements are selected to reflect the common experiences of individuals with schizophrenia while remaining manageable within the short duration of the MR simulation.  These elements were integrated into a familiar simulated environment, in this project the classroom, to enhance relatability. Visual effects are synchronized with voice content using timeline-based logic to ensure consistency and immersion across participants.
 
-\paragraph{Development Process}
+\paragraph{Iterative Development Process}
 
 The simulation was prototyped in Unity and deployed on the Meta Quest 3 headset, with audiovisual synchronization built to maintain immersion while reflecting the lived experiences of individuals with schizophrenia. Additionally, it was developed iteratively and tested internally before deployment. Initial design prototypes were reviewed by faculty members of the University of Health in Fribourg, Switzerland (Haute école de santé Fribourg, HEdS-FR) familiar with psychosis and also supervisors of this thesis familiar with MR development. A first version of the simulation was tested to evaluate technical functionality, timing, and content clarity.
 
@@ -56,7 +57,7 @@ Feedback from these early tests led to minor revisions in voice clarity, pacing 
 
 \paragraph{Planned Evaluation and Validation}
 
-To assess the impact of the experiment, the study uses a pretest–posttest design with debriefing and validated scales measuring affective and cognitive empathy, as well as emotional perception. The primary outcomes are changes in validated empathy scores before and after the experiment. The user study design will be explained in more detail in Chapter~\ref{ch:design}.
+To assess the impact of the experiment, the study uses a pretest–posttest design with debriefing and validated scales measuring affective and cognitive empathy, as well as emotional perception. The primary outcomes are changes in validated empathy scores before and after the experiment. The user study design is explained in more detail in Chapter~\ref{ch:userstudy}.
 
 Qualitative feedback collected after the experiment and during the debrief will be thematically analyzed to identify perceived realism, emotional resonance, and educational value. This combination of quantitative and qualitative methods allows for a robust, mixed-methods evaluation of the experiment impact on empathy and perception.
 
@@ -67,15 +68,16 @@ To address the challenges mentioned in \ref{sec:limitationsempathytraining} and 
 \begin{itemize}
     \item Uses Mixed Reality to simulate schizophrenia symptoms in familiar environments, allowing users to remain grounded in reality
     \item Tests the simulation on medical students which already have had a preparatory educational session to provide context and understanding of schizophrenia, reducing the risk of reinforcing stigma
-    \item Includes a debriefing session to help with reflection, discussion, and ethical understanding of the experience
-    \item Measures perceived immersion and empathy outcomes to evaluate the impact of the simulation on students attitudes and understanding
+    \item Includes a debriefing session to help with reflection, discussion, and ethical understanding of the experiment
+    \item Measures perceived immersion and empathy outcomes to evaluate the impact of the experiment on students attitudes and understanding
     \item Uses a combination of auditory and visual hallucinations to create a layered experience that reflects the complexity of real-life symptoms
     \item Uses a gradual increase in emotional intensity, allowing users to acclimate to the experience without overwhelming them
     \item Engages students in a reflective process that encourages them to connect their experiences to real-life clinical practice and patient interactions
+    \item A design limitation means only one student uses the headset at a time, and not being able to see their eyes from the outside makes it harder to create truly reactive social situations for observers
 \end{itemize}
 
 This study adopts a structured and ethically responsible MR-based approach to schizophrenia education. The goal is to increase both \textit{affective} and \textit{cognitive} empathy in medical students by situating simulated symptoms in real-world contexts, framed by education and post-reflection. 
 
 \vspace{1em}
 
-To sum up, this chapter presents a multi-layered approach to empathy training in medical education using MR technology. By combining immersive simulation with group discussions, and time for reflection afterward, the aim is to help students better understand the experiences of people with schizophrenia. This approach is designed carefully, following advice from existing research to avoid overwhelming emotions, provide clear context, and portray schizophrenia in an accurate and respectful way.
+To sum up, this chapter presents a multi-layered approach to empathy training in medical education using MR technology. By combining immersive simulation with group discussions, and time for reflection afterward, the aim is to help students better understand the experiences of people with schizophrenia. The proposed approach was designed carefully, following advice from existing research to avoid overwhelming emotions, provide clear context, and portray schizophrenia in an accurate and respectful way.
