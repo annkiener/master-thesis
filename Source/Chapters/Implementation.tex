@@ -3,9 +3,9 @@
 
 %This chapter explains how the simulation is designed to give users a realistic sense of what it might feel like to experience hallucinations, as reported by people living with schizophrenia. The goal is to make the experience both immersive and educational—helping users not only understand the symptoms, but also feel more empathy for those who live with them. The following sections describe how the auditory and visual elements were created, why they were chosen, and what challenges arose during implemetation.
 
-Before diving into the details of how individual components work, it is helpful to understand how the entire simulation is structured and coordinated. The simulation is developed in the Unity game engine, which provided the real-time rendering and interaction environment needed for an immersive experience. However, the core logic of the simulation is implemented through a set of custom C\# scripts, each responsible for specific components of the experience. The system is made up of several different scripts that control what the user sees and hears—from floating dots and stains to whispering voices. To make the experience feel immersive and believable, all of these effects need to happen at the right time and in the right order. This is where the central orchestrator comes in. The following sections explain how the simulation is timed and controlled, starting with the main orchestration logic that acts as the controller of the experience.
+Before diving into the details of how individual components work, it is helpful to understand how the entire simulation is structured and coordinated. The Mixed Reality (MR) simulation is developed in the Unity game engine, which provided the real-time rendering and interaction environment needed for an immersive experience. However, the core logic of the simulation is implemented through a set of custom C\# scripts, each responsible for specific components of the experience. The system is made up of several different scripts that control what the user sees and hears—from floating dots and stains to whispering voices. To make the experience feel immersive and believable, all of these effects need to happen at the right time and in the right order. This is where the central orchestrator comes in. The following sections explain how the simulation is timed and controlled, starting with the main orchestration logic that acts as the controller of the experience.
 
-\subsection{Orchestration}
+\section{Orchestration}
 At the heart of the system lies the \texttt{Orchestrator.cs} script. This script sequences the entire simulation, controlling when sounds play, visual hallucinations appear, and environmental effects occur. The timeline is structured using IEnumerator coroutines, allowing asynchronous timed execution of events, ensuring immersive pacing without overwhelming the user too early in the experience.
 
 \begin{lstlisting}[language=C++, caption={Orchestration Coroutine}, label={lst:orchestration}]
@@ -29,14 +29,16 @@ The orchestrator also manages the timing of the visual effects, ensuring that th
 
 Auditory hallucinations in the simulation are managed by the \texttt{SoundManager.cs} script, which handles the playback of voice samples that simulate inner voices or intrusive thoughts. These sounds are intended to create an immersive and unsettling auditory environment that reflects commonly reported auditory hallucination experiences.
 
+\vspace{1em}
+
 The core logic of the script is based on a list of \texttt{AudioSourceConfig} objects, each of which includes an \texttt{AudioSource} and a corresponding string identifier called \texttt{voiceGroup}, which acts as a grouped sequence. This was initially thought to be the identifier per voice, but as it became apparant that the script needs to follow a certain sequence, the identifier is stricly for knowing which section to play. Therefore, the script is divided into 12 parts, such that it could be controlled which part of the script should be played when. Table \ref{tab:audio_script} shows the identifiers and their corresponding audio clips. Each identifier corresponds to a specific audio clip that is played at a certain point in the simulation.
 
 Upon initialization, the script constructs a mapping of each voice group identifier to its respective audio source. When the method \texttt{PlaySound(string voiceGroup)} is called, the corresponding audio source is checked to ensure it is not already playing—this prevents overlapping audio playback. If no sound is currently playing for that identifier, the audio clip is played and logged for debugging purposes. If the requested identifier is not found, an error is reported.
 
 \vspace{1em}
-The actual audio content is carefully scripted to reflect a broad emotional spectrum, ranging from ambiguous or confused statements to more aggressive or paranoid lines. These phrases were written in French, which is the working language of the institution and designed to evoke discomfort and mostly distraction. To achieve a very natural tone of the voices, the voices were generated using the ElevenLabs text-to-speech AI platform \cite{elevenlabs}, where voices can be created with specific promps. The prompts therefore instructed the AI platform to create a voice which is primarly scared, one which is whispering, and one which is more aggressive. The goal is to create a range of voices that could be used to simulate different types of auditory hallucinations, from soft whispers to more confrontational tones.
+The actual audio content is carefully scripted to reflect a broad emotional spectrum, ranging from ambiguous or confused statements to more aggressive or paranoid lines. These phrases are written in French, which is the working language of the institution and designed to evoke discomfort and mostly distraction. To achieve a very natural tone of the voices, the voices are generated using the ElevenLabs text-to-speech AI platform \cite{elevenlabs}, where voices can be created with specific promps. The prompts therefore instructed the AI platform to create a voice which is primarly scared, one which is whispering, and one which is more aggressive. The goal is to create a range of voices that could be used to simulate different types of auditory hallucinations, from soft whispers to more confrontational tones.
 
-The voice samples were not developed in isolation. Their emotional tone, content, and perceived realism were refined through close collaboration with the \textit{Haute école de santé Fribourg} (HEdS-FR). We reviewed the script with faculty members experienced in mental health care. Their feedback directly influenced the final selection of voice lines, ensuring that the content remained as truthful as possible. 
+The voice samples are not developed in isolation. Their emotional tone, content, and perceived realism were refined through close collaboration with the \textit{Haute école de santé Fribourg} (HEdS-FR). We reviewed the script with faculty members experienced in mental health care. Their feedback directly influenced the final selection of voice lines, ensuring that the content remained as truthful as possible. 
 
 \vspace{1em}
 The final script used in the simulation is shown in Table~\ref{tab:audio_script}, presented in both the original French and their English translations.
@@ -170,9 +172,7 @@ The simulation includes several visual effects designed to represent different k
 
 \subsubsection{Screen Darkening}
 
-The screen darkening effect in the simulation is implemented via the \texttt{ScreenDarkener.cs} component, which gradually overlays a semi-transparent black panel onto the user's visual field. This visual modification simulates a sense of tunnel vision or visual deterioration, contributing to the immersive experience of altered perception.
-
-Technically, the effect is realized through a full-screen \texttt{Image} component referred to as \texttt{darkPanel}. This panel is a background panel from Unity itself with the color set to black. We can nicely see the panel in the Unity scene in figure \ref{fig:darkpanel}. 
+The screen darkening effect in the simulation is implemented via the \texttt{ScreenDarkener.cs} component, which gradually overlays a semi-transparent black panel onto the user's visual field. This visual modification simulates a sense of tunnel vision or visual deterioration, contributing to the immersive experience of altered perception. Technically, the effect is realized through a full-screen \texttt{Image} component referred to as \texttt{darkPanel}. This panel is a background panel from Unity itself with the color set to black. We can nicely see the panel in the Unity scene in figure \ref{fig:darkpanel}. 
 
 \begin{figure}[h!] 
     \centering 
@@ -181,12 +181,12 @@ Technically, the effect is realized through a full-screen \texttt{Image} compone
     \label{fig:darkpanel} 
 \end{figure}
 
-At the start of the simulation, the alpha value of this panel is set to zero, ensuring that the screen appears completely transparent and preventing any initial visual flash. With the start of the simulation a coroutine is triggered that increases the panel’s alpha value from 0 to 0.7 over a duration which can be set in Unity itself, called the (\texttt{fadeDuration}, typically 2 seconds).
-
-The darkening culminates in a panel opacity of 70\% (i.e., \texttt{alpha = 0.7}), which darkens the screen significantly without making it fully dark. This design choice maintains visibility while still inducing a sense of discomfort or visual strain. As such, the effect models subtle visual hallucinations or perceptual narrowing, which are commonly reported in psychotic experiences. 
+At the start of the simulation, the alpha value of this panel is set to zero, ensuring that the screen appears completely transparent and preventing any initial visual flash. With the start of the simulation a coroutine is triggered that increases the panel’s alpha value from 0 to 0.7 over a duration which can be set in Unity itself, called the (\texttt{fadeDuration}, typically 2 seconds). The darkening culminates in a panel opacity of 70\% (i.e., \texttt{alpha = 0.7}), which darkens the screen significantly without making it fully dark. This design choice maintains visibility while still inducing a sense of discomfort or visual strain. As such, the effect models subtle visual hallucinations or perceptual narrowing, which are commonly reported in psychotic experiences. 
 
 \subsubsection{Stains}
-One effect, created using the \texttt{DynamicWaveDeformation.cs} script, makes the surfaces of objects appear to ripple and shift. This gives them a wavy, moving look that reflects how perception can feel distorted during hallucinations. This deformation is applied to spheres which are triggered by a pre-defined spawn and disappearance interval. The spheres are randomly placed in the user's field of view, and they float around, creating a sense of visual noise. The \texttt{FadeEdgeShader.shader} shader is used to create a darkening effect around the edges of the screen, simulating the feeling of being in a confined space or having a limited field of vision. This shader is created with the help of ChatGPT, which provided a basic structure that is then customized to fit the specific needs of the simulation.
+One effect, created using the \texttt{DynamicWaveDeformation.cs} script, makes the surfaces of objects appear to ripple and shift. This gives them a wavy, moving look that reflects how perception can feel distorted during hallucinations. This deformation is applied to spheres which are triggered by a pre-defined spawn and disappearance interval. The spheres are randomly placed in the user's field of view, and they float around, creating a sense of visual noise. The \texttt{FadeEdgeShader.shader} shader is used to create a darkening effect around the edges of the screen, simulating the feeling of being in a confined space or having a limited field of vision. This shader is created with the help of ChatGPT \cite{ChatGPT}, which provided a basic structure that is then customized to fit the specific needs of the simulation.
+
+\vspace{1em}
 
 The \texttt{Orchestrator.cs} script manages when these spheres appear during the simulation timeline. The method \texttt{SpawnSphere()} is invoked repeatedly in a loop to instantiate the spheres at randomized positions around a central \texttt{spawnPoint}. The number of spheres and the interval between their appearances are determined by the parameters \texttt{sphereCount} and \texttt{spawnInterval}, respectively. Each sphere is placed within a circular area defined by a \texttt{spawnRadius}, with its Y-coordinate fixed to match the user’s eye level for spatial consistency. After a fixed delay, the spheres are removed in the same order they appeared, one by one, using a queue-based removal mechanism and the \texttt{Destroy()} function. 
 
@@ -194,17 +194,19 @@ The \texttt{Orchestrator.cs} script manages when these spheres appear during the
 
 The visual appearance of these spheres is designed to be ambiguous and somewhat unnatural. They show a constantly shifting surface that pulses and distorts as if they are made out of a wavy material to represent stains. This is achieved through the \texttt{DynamicWaveDeformation.cs} script, which displaces the vertices of each sphere's mesh in real time, to create this wave effect.
 
+\vspace{1em}
+
 When instantiated, the script stores the original mesh vertices and continuously updates them every frame based on the wave function that combines sine and cosine operations on both the X and Z components of each vertex:
 
 \begin{quote}
 \texttt{float wave = sin(time + x) * cos(time + z)}
 \end{quote}
 
-The wave value is multiplied by a configurable strength parameter called \texttt{waveAmplitude}, and this result is used to slightly move each point on the sphere’s surface outward or inward along its normal direction. This creates a rippling effect across the whole object, making the sphere appear as if it is softly pulsing or "breathing" while it exists in the environment.
+The wave value is multiplied by a configurable strength parameter called \texttt{waveAmplitude}, and this result is used to slightly move each point on the spheres surface outward or inward along its normal direction. This creates a rippling effect across the whole object, making the sphere appear as if it is softly pulsing or "breathing" while it exists in the environment.
 
 
 \paragraph{Visual Example}
-Figure~\ref{fig:stain} shows a black deforming sphere as it appears in the real-world mixed reality classroom context. The shader used for this object includes a soft fade around the edges, giving it a non-solid, ghostly appsearance that blends slightly with the background. Figure~\ref{fig:fadeedgeshader} illustrates the same object in the Unity Editor, where the mesh deformation and alpha transparency are more clearly visible.
+Figure~\ref{fig:stain} shows a black deforming sphere as it appears in the real-world classroom context. The shader used for this object includes a soft fade around the edges, giving it a non-solid, ghostly appsearance that blends slightly with the background. Figure~\ref{fig:fadeedgeshader} illustrates the same object in the Unity Editor, where the mesh deformation and alpha transparency are more clearly visible.
 
 \begin{figure}[h!] 
     \centering 
@@ -229,7 +231,11 @@ To help simulate the kind of perceptual disturbances that some people with psych
 
 The \texttt{DotManager.cs} script is responsible for filling the space around the user with a number of small red and blue spheres—referred to as “dots.” These dots are placed randomly within a area, defined by the parameters \texttt{spawnWidth}, \texttt{spawnHeight}, and \texttt{spawnDepth}. To not overcrowd the visual field, the script makes sure that each dot is placed far enough away from the others. If a dot would be too close to a previous one, a new position is chosen.
 
+\vspace{1em}
+
 Each dot is randomly colored red or blue, creating a scattered, noisy effect. The idea is to make the environment feel just a bit off or overwhelming, without making it frightening.The dots are also meant to be more interactive. They appear at different moments in the simulation and are set up to respond when the user reaches out and touches them. The logic behind this is handled by the \texttt{ObjectCollision.cs} script.
+
+\vspace{1em}
 
 Using Unity's collision detection system, the script monitors for \texttt{OnTriggerEnter} and \texttt{OnTriggerExit} events. When the user's hand (or other collider) enters the trigger zone of a sphere, the following actions are executed:
 
@@ -238,7 +244,7 @@ Using Unity's collision detection system, the script monitors for \texttt{OnTrig
     \item The script searches the scene for an \texttt{AudioSource} tagged as \texttt{"Audio10"} and stops it using \texttt{audioSource.Stop()}. This source plays a looping sound \textit{"Touche les points !"} (Touch the dots!), intended to mimic intrusive auditory hallucinations. Its termination represents a temporary sense of relief or control.
 \end{itemize}
 
-The interaction is simple but meaningful. It represents how some people try to manage or quiet their hallucinations—by focusing on them or interacting in some way. In the simulation, this also makes the experience more engaging and lets users take an active role, rather than just being passive observers.
+The interaction is simple but meaningful. It represents how some people try to manage or quiet their hallucinations, by focusing on them or interacting in some way. In the simulation, this also makes the experience more engaging and lets users take an active role, rather than just being passive observers.
 
 \paragraph{Visual Example}
 The images below illustrate the interaction process. In Figure~\ref{fig:dots_before}, the user sees floating dots in their original red and blue state. After touching a sphere, as shown in Figure~\ref{fig:dots_after}, the affected object changes color, confirming that the interaction is registered and the audio loop is interrupted.
@@ -284,7 +290,7 @@ Similarly, the interactive dots were initially made 'grabbable' using only Unity
 \end{figure}
 
 \paragraph{First Implementation}
-The first implementation built upon the initial mockup by introducing more dynamic visual effects and refining interaction feedback. However, the most important implementation here, is the orchestration logic, which let everything fall into place and meant that one could have more control over the whole simulation. Regarding the visual elements, for the pulsating stains, their placement was improved to be more deliberate, appearing at eye-level and surrounding the user's visual field. This is visualized in Figure~\ref{fig:stains_placed}. 
+The first implementation built upon the initial mockup by introducing more dynamic visual effects and refining interaction feedback. However, the most important implementation here, is the orchestration logic, which let everything fall into place and meant that one could have more control over the whole simulation. Regarding the visual elements, for the pulsating stains, their placement is improved to be more deliberate, appearing at eye-level and surrounding the user's visual field. This is visualized in Figure~\ref{fig:stains_placed}. 
 
 \begin{figure}[H]
     \centering
@@ -303,9 +309,9 @@ The color-changing feature for the interactive dots was present, but it was desi
 \end{figure}
 
 \paragraph{Last Improvements for the Final Version}
-For the final version, some more improvements were made based on the first iteration. We made sure, that once you touched a dot, its color would stay changed and not revert back to the original color. This was done by removing the logic that changed the color back to red when the finger was no longer in contact with the dot.
+For the final version, some more improvements were made based on the first iteration. We made sure, that once you touched a dot, its color would stay changed and not revert back to the original color. This was done by removing the logic that changed the color back to red when the finger was no longer in contact with the dot. Furthermore, the sounds of the voices were placed around the user in the 3D space. This meant voices seemed to come from specific, fixed spots, which really made the experience feel more real and unsettling, like actual hallucinations.
 
-Furthermore, the sounds of the voices were placed around the user in the 3D space. This meant voices seemed to come from specific, fixed spots, which really made the experience feel more real and unsettling, like actual hallucinations.
+\vspace{1em}
 
 However, until the final version was completed, several challenges emerged which are discussed in the next section \ref{sec:challengesimplementation}.
 
@@ -315,6 +321,8 @@ Despite careful planning, several significant challenges emerged during the deve
 
 \paragraph{Audio Loops} 
 Initially, each interactive sphere instantiated its own sound playback. This led to multiple overlapping sound loops, which had to be fixed. The problem arose because the audio logic is not centralized — each sphere's ObjectCollision component independently triggered audio playback upon spawning. For example, if five spheres were instantiated, each would play its own sound, leading to overlapping audio. The audio would then only stop, if all five spheres were touched, which is not the intended behavior.
+
+\vspace{1em}
 
 To solve this issue, a shared audio management system is developed, which is a static AudioSource and coroutine created within \texttt{ObjectCollision.cs}. This means that only one looped sound source exists, and it is globally stopped when a user interacts with any sphere.
 
@@ -336,9 +344,13 @@ During preliminary testing, the built-in speakers of the Meta Quest 3 were found
 It also ensures immersive simulatin while respecting privacy and the testing environment.
 
 \paragraph{Spatial Placement of Audio } 
-Another significant challenge was the spatial arrangement of audio sources within the simulation environment. Initially, it was difficult to orient myself correctly in Unityss Scene View, making it unclear where the sounds would originate from relative to the user position. Proper placement was essential to create a convincing spatial auditory experience, because sounds had to feel anchored in specific locations in the environment. As the user moved, the sounds needed to remain fixed in space, enhancing realism and immersion.
+Another significant challenge was the spatial arrangement of audio sources within the simulation environment. Initially, it was difficult to orient myself correctly in Unityss Scene View, making it unclear where the sounds would originate from relative to the user position. Proper placement is essential to create a convincing spatial auditory experience, because sounds had to feel anchored in specific locations in the environment. As the user moved, the sounds needed to remain fixed in space, enhancing realism and immersion.
 
-To solve this, I invested time to become familiar with Unity's camera controls and 3D scene navigation.Then, the sound sources were distributed strategically across different coordinates, ensuring that different hallucinated voices would come from distinct spatial directions.
+\vspace{1em}
+
+To solve this, some time was invested to become familiar with Unity's camera controls and 3D scene navigation.Then, the sound sources were distributed strategically across different coordinates, ensuring that different hallucinated voices would come from distinct spatial directions.
+
+\vspace{1em}
 
 An example of the 3D placement of the sound sources in the Unity scene is shown in \autoref{fig:sound_sources}.
 

@@ -1,11 +1,13 @@
 \chapter{Design}
 \label{ch:design}
 
-The design of the Mixed Reality (MR) simulation for this thesis was carefully crafted to immerse users in a realistic experience of schizophrenia symptoms, particularly focusing on auditory and visual hallucinations. The goal was to create an educational tool that enhances empathy and understanding of the challenges faced by individuals with schizophrenia.
+The design of the Mixed Reality (MR) simulation for this thesis is carefully crafted to immerse users in a realistic experience of schizophrenia symptoms, particularly focusing on auditory and visual hallucinations. The goal is to create an educational tool that enhances empathy and understanding of the challenges faced by individuals with schizophrenia.
 
 \section{Design Choices}
 
-The MR simulation developed in this thesis was designed to give students an emotional and realistic sense of what it might feel like to experience psychotic symptoms, while still keeping them in their real environment. Unlike VR, which fully replaces the users surroundings, MR allows digital symptoms — like hallucinations or sounds — to appear in the users actual space. % repetitive?
+The MR simulation developed in this thesis is designed to give students an emotional and realistic sense of what it might feel like to experience psychotic symptoms, while still keeping them in their real environment. Unlike VR, which fully replaces the users surroundings, MR allows digital symptoms — like hallucinations or sounds — to appear in the users actual space. % repetitive?
+
+\vspace{1em}
 
 The simulation shows both auditory and visual symptoms, based on real descriptions from people who live with schizophrenia. Users hear critical or unsettling voices and see visual changes with the goal of distracting them. These effects are introduced step by step to reflect how symptoms often build gradually. The aim is not to scare or shock, but to help students connect with the emotional and mental confusion that someone with psychosis might feel. Because the simulation is only 3 to 4 minutes long, it focuses on giving a short but meaningful experience. It is placed in a familiar environment, which is the classroom, so that the symptoms feel more relatable. This balance is important: the goal is to increase empathy and understanding, not to create fear or reinforce negative stereotypes. % repetitive?
 
@@ -13,21 +15,30 @@ The simulation shows both auditory and visual symptoms, based on real descriptio
 
 To support this, the simulation is framed by two key points. At some point before the day of testing, students have already been lectured sometime in their studies on the topic of schizophrenia and also already have pracitcal experience with patients. They also will be briefed about the simulation and what it should show. Afterwards, they take part in a guided debrief, where they can reflect on how they felt, what they learned, and how it might change the way they see or interact with patients. This step is especially important, as it helps students process the experience in a thoughtful way.
 
+\vspace{1em}
 The overall design is based on ideas from recent research, which shows that immersive tools work best when combined with education and reflection. Studies by Rueda and Lara and Zare-Bidaki et al. stress that simulations should be realistic and meaningful, but also ethically responsible and emotionally safe. This approach follows those recommendations closely, aiming to create a learning experience that supports both emotional connection and critical thinking \cite{Rueda2020,Zare-Bidaki2022}.
 
 \section{Simulation Structure}
 
-The simulation was intentionally structured to create an increasingly unsettling experience that mirrors hallucinations commonly reported in schizophrenia. This design was informed by both clinical research on psychotic symptoms and educational approaches shown to foster empathy and reduce stigma among healthcare professionals. The auditory hallucinations included in the simulation are modeled after established training tools like Patricia Deegan’s Hearing Voices Curriculum - a simulation of how people with schizophrenia might experience hearing voices -, which has been shown to significantly enhance empathy in both students and clinicians \cite{Hsia2022}. Building on this model, the simulation presents a series of whispered voices and confrontational phrases. These sounds are introduced gradually and increase in emotional intensity over time, reflecting research that shows emotional engagement enhances learning and empathetic understanding \cite{Skoy2016}.
+The simulation is intentionally structured to create an increasingly unsettling experience that mirrors hallucinations commonly reported in schizophrenia. This design is informed by both clinical research on psychotic symptoms and educational approaches shown to foster empathy and reduce stigma among healthcare professionals. The auditory hallucinations included in the simulation are modeled after established training tools like Patricia Deegan’s Hearing Voices Curriculum - a simulation of how people with schizophrenia might experience hearing voices -, which has been shown to significantly enhance empathy in both students and clinicians \cite{Hsia2022}. Building on this model, the simulation presents a series of whispered voices and confrontational phrases. These sounds are introduced gradually and increase in emotional intensity over time, reflecting research that shows emotional engagement enhances learning and empathetic understanding \cite{Skoy2016}.
 
 \vspace{1em}
 
-In addition to auditory elements, the simulation incorporates visual hallucination features. These include colored dots that appear, spatial distortions like black stains, and a darkening of the visual field. These visual effects were inspired by clinical reports of hallucinations in schizophrenia, which often describe geometric patterns and distorted or symbolic images \cite{Silverstein2021,Vanommen2019}.
+In addition to auditory elements, the simulation incorporates visual hallucination features. These include colored dots that appear, spatial distortions like black stains, and a darkening of the visual field. These visual effects are inspired by clinical reports of hallucinations in schizophrenia, which often describe geometric patterns and distorted or symbolic images \cite{Silverstein2021,Vanommen2019}. Furthermore, inspiration is also drawn from visualizations of patients themselves, represented in early research by Horowitz \cite{Horowitz1964} and shown in Figure \ref{fig:visualizations_hallucinations}. However, it is important to note that the simulation does not attempt to replicate the exact visual experiences of all individuals with schizophrenia, as these can vary widely. Instead, it aims to create a generalized representation of common visual distortions that can evoke empathy and understanding in users.
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.4\textwidth]{../../Figures/hallucinations-visual.jpg} 
+    \caption{Visualizations of hallucinations in schizophrenia.} 
+    \label{fig:visualizations_hallucinations} 
+\end{figure}
+
 
 The overall structure is designed to simulate both subtle and intense hallucinatory experiences. Initial symptoms—such as whispers and the darkening of the visual field—represent the early stages of changes. As the simulation progresses, the intensity of both auditory and visual elements increases to reflect the overwhelming nature of more severe psychotic episodes. This progression helps users understand how hallucinations can escalate over time and provides insight into the lived experience of individuals with schizophrenia.
 
 \section{Simulation Sequence}
 
-To support this progression, Figure~\ref{fig:simulation_sequence} outlines the sequence and timing of both auditory and visual elements in the simulation. The structure was carefully chosen to reflect how psychotic symptoms often unfold—starting subtly and becoming more disruptive. Beginning with sort of a 'tunnel vission', by darkening the visual field and inclduing whispered voices, the simulation gradually introduces more intense auditory cues and layered visual distortions, such as black stains and interactive colored dots. This stepwise increase in complexity ensures that users are not overwhelmed too quickly. The timing was designed to fit within the short duration of the simulation (3 to 4 minutes), while still providing a productive experience of what psychosis might feel like. It should also be mentioned that the voice groups shown in Figure are explained in more detail in the next chapter, where the implementation of the simulation is described.
+To support this progression, Figure~\ref{fig:simulation_sequence} outlines the sequence and timing of both auditory and visual elements in the simulation. The structure is carefully chosen to reflect how psychotic symptoms often unfold—starting subtly and becoming more disruptive. Beginning with sort of a 'tunnel vission', by darkening the visual field and inclduing whispered voices, the simulation gradually introduces more intense auditory cues and layered visual distortions, such as black stains and interactive colored dots. This stepwise increase in complexity ensures that users are not overwhelmed too quickly. The timing is designed to fit within the short duration of the simulation (3 to 4 minutes), while still providing a productive experience of what psychosis might feel like. It should also be mentioned that the voice groups shown in Figure are explained in more detail in the next chapter, where the implementation of the simulation is described.
 
 \begin{figure}[p]
 \centering
