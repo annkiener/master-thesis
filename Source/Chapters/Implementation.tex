@@ -1,9 +1,7 @@
 \chapter{Implementation}
 \label{ch:implementation}
 
-%This chapter explains how the simulation is designed to give users a realistic sense of what it might feel like to experience hallucinations, as reported by people living with schizophrenia. The goal is to make the experience both immersive and educational—helping users not only understand the symptoms, but also feel more empathy for those who live with them. The following sections describe how the auditory and visual elements were created, why they were chosen, and what challenges arose during implemetation.
-
-Before diving into the details of how individual components work, it is helpful to understand how the entire simulation is structured and coordinated. The Mixed Reality (MR) simulation is developed in the Unity game engine, which provided the real-time rendering and interaction environment needed for an immersive experience. However, the core logic of the simulation is implemented through a set of custom C\# scripts, each responsible for specific components of the experience. The system is made up of several different scripts that control what the user sees and hears—from floating dots and stains to whispering voices. To make the experience feel immersive and believable, all of these effects need to happen at the right time and in the right order. This is where the central orchestrator comes in. The following sections explain how the simulation is timed and controlled, starting with the main orchestration logic that acts as the controller of the experience.
+Before diving into the details of how individual components work, it is helpful to understand how the entire simulation is structured and coordinated. The Mixed Reality (MR) simulation is developed in the Unity game engine, which provided the rendering and interaction environment needed for an immersive experience. However, the core logic of the simulation is implemented through a set of custom C\# scripts, each responsible for specific components of the experience. The system is made up of several different scripts that control what the user sees and hears, from floating dots and stains to whispering voices. To make the experience feel immersive and believable, all of these effects need to happen at the right time and in the right order. This is where the central orchestrator comes in. The following sections explain how the simulation is timed and controlled, starting with the main orchestration logic that acts as the controller of the experience.
 
 \section{Orchestration}
 At the heart of the system lies the \texttt{Orchestrator.cs} script. This script sequences the entire simulation, controlling when sounds play, visual hallucinations appear, and environmental effects occur. The timeline is structured using IEnumerator coroutines, allowing asynchronous timed execution of events, ensuring immersive pacing without overwhelming the user too early in the experience.
@@ -33,7 +31,7 @@ Auditory hallucinations in the simulation are managed by the \texttt{SoundManage
 
 The core logic of the script is based on a list of \texttt{AudioSourceConfig} objects, each of which includes an \texttt{AudioSource} and a corresponding string identifier called \texttt{voiceGroup}, which acts as a grouped sequence. This was initially thought to be the identifier per voice, but as it became apparant that the script needs to follow a certain sequence, the identifier is stricly for knowing which section to play. Therefore, the script is divided into 12 parts, such that it could be controlled which part of the script should be played when. Table \ref{tab:audio_script} shows the identifiers and their corresponding audio clips. Each identifier corresponds to a specific audio clip that is played at a certain point in the simulation.
 
-Upon initialization, the script constructs a mapping of each voice group identifier to its respective audio source. When the method \texttt{PlaySound(string voiceGroup)} is called, the corresponding audio source is checked to ensure it is not already playing—this prevents overlapping audio playback. If no sound is currently playing for that identifier, the audio clip is played and logged for debugging purposes. If the requested identifier is not found, an error is reported.
+Upon initialization, the script constructs a mapping of each voice group identifier to its respective audio source. When the method \texttt{PlaySound(string voiceGroup)} is called, the corresponding audio source is checked to ensure it is not already playing - this prevents overlapping audio playback. If no sound is currently playing for that identifier, the audio clip is played and logged for debugging purposes. If the requested identifier is not found, an error is reported.
 
 \vspace{1em}
 The actual audio content is carefully scripted to reflect a broad emotional spectrum, ranging from ambiguous or confused statements to more aggressive or paranoid lines. These phrases are written in French, which is the working language of the institution and designed to evoke discomfort and mostly distraction. To achieve a very natural tone of the voices, they are generated using the ElevenLabs text-to-speech AI platform, where voices can be created with specific prompts\footnote{ElevenLabs Text-to-Speech AI. Available at: \url{https://elevenlabs.io/app/home}. Accessed: 2025-04-13.}. The prompts therefore instructed the AI platform to create a voice which is primarly scared, one which is whispering, and one which is more aggressive. The goal is to create a range of voices that could be used to simulate different types of auditory hallucinations, from soft whispers to more confrontational tones.
@@ -117,7 +115,7 @@ The final script used in the simulation is shown in Table~\ref{tab:audio_script}
 
 \end{tikzpicture}%
 
-\caption{System architecture and variable orchestration for MR schizophrenia simulation.}
+\caption{System architecture and variable orchestration.}
 \label{fig:orchestrator_diagram}
 \end{figure}
 \end{landscape}
@@ -172,7 +170,7 @@ The simulation includes several visual effects designed to represent different k
 
 \subsubsection{Screen Darkening}
 
-The screen darkening effect in the simulation is implemented via the \texttt{ScreenDarkener.cs} component, which gradually overlays a semi-transparent black panel onto the user's visual field. This visual modification simulates a sense of tunnel vision or visual deterioration, contributing to the immersive experience of altered perception. Technically, the effect is realized through a full-screen \texttt{Image} component referred to as \texttt{darkPanel}. This panel is a background panel from Unity itself with the color set to black. We can nicely see the panel in the Unity scene in Figure \ref{fig:darkpanel}. 
+The screen darkening effect in the simulation is implemented via the \texttt{ScreenDarkener.cs} component, which gradually overlays a semi-transparent black panel onto the user's visual field. This visual modification simulates a sense of visual deterioration, contributing to the immersive experience of altered perception. Technically, the effect is realized through a full-screen \texttt{Image} component referred to as \texttt{darkPanel}. This panel is a background panel from Unity itself with the color set to black. We can nicely see the panel in the Unity scene in Figure \ref{fig:darkpanel}. 
 
 \begin{figure}[h!] 
     \centering 
@@ -270,7 +268,7 @@ Together, these two systems—floating dots and interactive auditory element of 
 The development of the simulation was an iterative process, involving multiple rounds of testing and refinement. In this section, we will show the progression from initial mockupts to the final implementation which is presented above.
 
 \paragraph{Mockup}
-The initial mockup of the simulation focused on establishing basic visual elements. For the pulsating stains, the early implementation did not include  placement logic, often resulting in them clustering unnaturally in a single corner of the users view and below eye level. This can be seen in Figure\ref{fig:dots_clustered}.
+The initial mockup of the simulation focused on establishing basic visual elements. For the pulsating stains, the early implementation did not include  placement logic, often resulting in them clustering unnaturally in a single corner of the users view and below eye level. This can be seen in Figure \ref{fig:dots_clustered}.
 
 \begin{figure}[H]
     \centering
@@ -289,8 +287,14 @@ Similarly, the interactive dots were initially made 'grabbable' using only Unity
     \label{fig:grabbing_dots}
 \end{figure}
 
+Regarding the auditory hallucination script, the initial implementation of the \texttt{SoundManager.cs} script was a simple audio playback. This early version did not have any control logic, causing the audio to loop continuously. The content was also in development, including phrases in French like ``Regarde-la, elle sait quelque chose...'' (``Look at her, she knows something...''), which were intended to intensify feelings of observation.
+
+\vspace{1em}
+
+Following feedback, the script was revised to address the user directly at all times. This change was made to ensure the audio could be applied universally, regardless of the user's location or the presence of other individuals, as it was not guaranteed that a specific person would be visible in the user's field of view, since we did not specifiy the testing environment at this point in time. The final script was designed to focus on a more direct and personal form of psychological distress.
+
 \paragraph{First Implementation}
-The first implementation built upon the initial mockup by introducing more dynamic visual effects and refining interaction feedback. However, the most important implementation here, is the orchestration logic, which let everything fall into place and meant that one could have more control over the whole simulation. Regarding the visual elements, for the pulsating stains, their placement is improved to be more deliberate, appearing at eye-level and surrounding the user's visual field. This is visualized in Figure~\ref{fig:stains_placed}. 
+The first implementation built upon the initial mockup by introducing more dynamic visual effects and refining interaction feedback. However, the most important implementation here is the orchestration logic, which let everything fall into place and meant that one could have more control over the whole simulation. Regarding the visual elements, for the pulsating stains, their placement is improved to be more deliberate, appearing at eye-level and surrounding the user's visual field. This is visualized in Figure~\ref{fig:stains_placed}. 
 
 \begin{figure}[H]
     \centering
@@ -300,6 +304,10 @@ The first implementation built upon the initial mockup by introducing more dynam
 \end{figure}
 
 The color-changing feature for the interactive dots was present, but it was designed to revert back to the dot's original color as soon as the user's finger was not contact anymore, which can be seen in Figure \ref{fig:dot-green}. Additionally, the darkening of the visual field was also implemented during this phase.
+
+\vspace{1em}
+
+The auditory script for the first implementation was finalized with orchestration logic to ensure a controlled playback of hallucinations. The audio clips, recorded in French, were refined to express a wider range of emotional tones, including confusion, fear, and aggression, and were set to play in a fixed sequence.
 
 \begin{figure}[H]
     \centering
@@ -354,6 +362,6 @@ To solve this, some time was invested to become familiar with Unity's camera con
 
 An example of the 3D placement of the sound sources in the Unity scene is shown in \autoref{fig:sound_sources}.
 
-\begin{figure}[h!] \centering \includegraphics[width=0.8\textwidth]{../../Figures/unity-scene.png} \caption{Placement of spatial sound sources in the Unity scene for the hallucination simulation. Each speaker icon represents a sound source emitting a hallucination voice.} \label{fig:sound_sources} \end{figure}
+\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{../../Figures/unity-scene.png} \caption{Placement of spatial sound sources in the Unity scene for the hallucination simulation. Each speaker icon represents a sound source emitting a hallucination voice.} \label{fig:sound_sources} \end{figure}
 
 After the description of the implementation of the MR simulation, the next chapter will outline the user study designed to test if this MR simulation actually helps increase empathy.
