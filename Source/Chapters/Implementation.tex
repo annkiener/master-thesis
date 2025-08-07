@@ -182,11 +182,11 @@ The screen darkening effect in the simulation is implemented via the \texttt{Scr
 At the start of the simulation, the alpha value of this panel is set to zero, ensuring that the screen appears completely transparent and preventing any initial visual flash. With the start of the simulation a coroutine is triggered that increases the panel’s alpha value from 0 to 0.7 over a duration which can be set in Unity itself, called the (\texttt{fadeDuration}, typically 2 seconds). The darkening culminates in a panel opacity of 70\% (i.e., \texttt{alpha = 0.7}), which darkens the screen significantly without making it fully dark. This design choice maintains visibility while still inducing a sense of discomfort or visual strain. As such, the effect models subtle visual hallucinations or perceptual narrowing, which are commonly reported in psychotic experiences. 
 
 \subsubsection{Stains}
-One effect, created using the \texttt{DynamicWaveDeformation.cs} script, makes the surfaces of objects appear to ripple and shift. This gives them a wavy, moving look that reflects how perception can feel distorted during hallucinations. This deformation is applied to spheres which are triggered by a pre-defined spawn and disappearance interval. The spheres are randomly placed in the user's field of view, and they float around, creating a sense of visual noise. The \texttt{FadeEdgeShader.shader} shader is used to create a darkening effect around the edges of the screen, simulating the feeling of being in a confined space or having a limited field of vision. This shader is created with the help of ChatGPT, which provided a basic structure that was then customized to fit the specific needs of the simulation\footnote{OpenAI, ChatGPT. Available at: \url{https://openai.com/chatgpt}. Accessed: 2025-08-05.}.
+One effect, created using the \texttt{DynamicWaveDeformation.cs} script, makes the surfaces of objects appear to ripple and shift. This gives them a wavy, moving look that reflects how perception can feel distorted during hallucinations. This deformation is applied to spheres which are triggered by a pre-defined spawn and disappearance interval. The spheres are randomly placed in the user's field of view, and they float around, creating a sense of visual noise. The \texttt{FadeEdgeShader.shader} shader is used to create a darkening effect around the edges of the spheres, making them appear as if they are fading into the background. This shader is designed to give the spheres a ghostly, shadowy appearance, which is fitting for the simulation's goal of mimicking psychotic experiences. This shader is created with the help of ChatGPT, which provided a basic structure that was then customized to fit the specific needs of the simulation\footnote{OpenAI, ChatGPT. Available at: \url{https://openai.com/chatgpt}. Accessed: 2025-08-05.}.
 
 \vspace{1em}
 
-The \texttt{Orchestrator.cs} script manages when these spheres appear during the simulation timeline. The method \texttt{SpawnSphere()} is invoked repeatedly in a loop to instantiate the spheres at randomized positions around a central \texttt{spawnPoint}. The number of spheres and the interval between their appearances are determined by the parameters \texttt{sphereCount} and \texttt{spawnInterval}, respectively. Each sphere is placed within a circular area defined by a \texttt{spawnRadius}, with its Y-coordinate fixed to match the user’s eye level for spatial consistency. After a fixed delay, the spheres are removed in the same order they appeared, one by one, using a queue-based removal mechanism and the \texttt{Destroy()} function. 
+The \texttt{Orchestrator.cs} script manages the timing of these spheres during the simulation timeline. The method \texttt{SpawnSphere()} is invoked repeatedly in a loop to instantiate the spheres at randomized positions around a central \texttt{spawnPoint}. The number of spheres and the interval between their appearances are determined by the parameters \texttt{sphereCount} and \texttt{spawnInterval}, respectively. Each sphere is placed within a circular area defined by a \texttt{spawnRadius}, with its Y-coordinate fixed to match the user’s eye level for spatial consistency. After a fixed delay, the spheres are removed in the same order they appeared, one by one, using a queue-based removal mechanism and the \texttt{Destroy()} function. 
 
 \vspace{1em}
 
@@ -203,7 +203,7 @@ When instantiated, the script stores the original mesh vertices and continuously
 The wave value is multiplied by a configurable strength parameter called \texttt{waveAmplitude}, and this result is used to slightly move each point on the spheres surface outward or inward along its normal direction. This creates a rippling effect across the whole object, making the sphere appear as if it is softly pulsing or "breathing" while it exists in the environment.
 
 \vspace{1em}
-Figure~\ref{fig:stain} shows a black deforming sphere as it appears in the real-world classroom context. The shader used for this object includes a soft fade around the edges, giving it a non-solid, ghostly appsearance that blends slightly with the background. Figure~\ref{fig:fadeedgeshader} illustrates the same object in the Unity Editor, where the mesh deformation and alpha transparency are more clearly visible.
+Figure~\ref{fig:stain} shows a black deforming sphere as it appears in the real-world classroom context. The shader used for this object includes a soft fade around the edges, giving it a ghostly appearance that blends slightly with the background. Figure~\ref{fig:fadeedgeshader} illustrates the same object in the Unity Editor, where the mesh deformation is more clearly visible.
 
 \begin{figure}[h!] 
     \centering 
@@ -226,15 +226,15 @@ To help simulate the kind of perceptual disturbances that some people with psych
 
 \vspace{1em}
 
-The \texttt{DotManager.cs} script is responsible for filling the space around the user with a number of small red and blue spheres—referred to as “dots.” These dots are placed randomly within an area, defined by the parameters \texttt{spawnWidth}, \texttt{spawnHeight}, and \texttt{spawnDepth}. To not overcrowd the visual field, the script makes sure that each dot is placed far enough away from the others. If a dot would be too close to a previous one, a new position is chosen.
+The \texttt{DotManager.cs} script is responsible for filling the space around the user with a number of small red and blue spheres - referred to as “dots.” These dots are placed randomly within an area, defined by the parameters \texttt{spawnWidth}, \texttt{spawnHeight}, and \texttt{spawnDepth}. To not overcrowd the visual field, the script makes sure that each dot is placed far enough away from the others. If a dot would be too close to a previous one, a new position is chosen.
 
 \vspace{1em}
 
-Each dot is randomly colored red or blue, creating a scattered, noisy effect. The idea is to make the environment feel just a bit off or overwhelming, without making it frightening.The dots are also meant to be more interactive. They appear at different moments in the simulation and are set up to respond when the user reaches out and touches them. The logic behind this is handled by the \texttt{ObjectCollision.cs} script.
+Each dot is randomly colored red or blue. The idea is to make the environment feel just a bit off or overwhelming, without making it frightening.The dots are also meant to be more interactive. They appear at different moments in the simulation and are set up to respond when the user reaches out and touches them. The logic behind this is handled by the \texttt{ObjectCollision.cs} script.
 
 \vspace{1em}
 
-Using Unity's collision detection system, the script monitors for \texttt{OnTriggerEnter} and \texttt{OnTriggerExit} events. When the user's hand (or other collider) enters the trigger zone of a sphere, the following actions are executed:
+Using Unity's collision detection system, the script monitors for \texttt{OnTriggerEnter} and \texttt{OnTriggerExit} events. When the user's index finger enters the trigger zone of a sphere, the following actions are executed:
 
 \begin{itemize}
     \item The object's material is changed to a new, randomly generated color using \texttt{Random.ColorHSV()}. This signals to the user that the object has responded to their touch.
@@ -261,8 +261,7 @@ The images below illustrate the interaction process. In Figure~\ref{fig:dots_bef
     \label{fig:dots_after}
 \end{figure}
 
-
-Together, these two systems—floating dots and interactive auditory element of the dots—form a approach to simulating environmental disruption. While the \texttt{DotManager.cs} creates persistent visual distraction, the \texttt{ObjectCollision} system adds intensity. The use of sound looping and the color change of the dots reinforces the themes of intrusion and momentary relief, central to the projects goal of eliciting empathetic insight into the lived experience of a psychosis.
+Together, these two systems - floating dots and interactive auditory element of the dots - form a approach to simulating environmental disruption. While the \texttt{DotManager.cs} creates persistent visual distraction, the \texttt{ObjectCollision} adds intensity. The use of sound looping and the color change of the dots reinforces the themes of intrusion and momentary relief, central to the goal of eliciting empathetic insight into the lived experience of a psychosis.
 
 \section{Iterative Development Process}
 The development of the simulation was an iterative process, involving multiple rounds of testing and refinement. In this section, we will show the progression from initial mockupts to the final implementation which is presented above.
@@ -278,7 +277,7 @@ The initial mockup of the simulation focused on establishing basic visual elemen
 \end{figure}
 
 
-Similarly, the interactive dots were initially made 'grabbable' using only Unity's default built-in script for object interaction, providing engagement without refined feedback and this was not the desired behaviour of a visual hallucination that one could interact with. An example of this is shown in Figure~\ref{fig:grabbing_dots}.
+Similarly, the interactive dots were initially made grabbable using only Unity's default built-in script for object interaction, providing engagement without refined feedback and this was not the desired behaviour of a visual hallucination that one could interact with. An example of this is shown in Figure~\ref{fig:grabbing_dots}.
 
 \begin{figure}[H]
     \centering
@@ -303,13 +302,13 @@ The first implementation built upon the initial mockup by introducing more dynam
     \label{fig:stains_placed}
 \end{figure}
 
-The color-changing feature for the interactive dots was present, but it was designed to revert back to the dot's original color as soon as the user's finger was not contact anymore, which can be seen in Figure \ref{fig:dot-green}. Additionally, the darkening of the visual field was also implemented during this phase.
+The color-changing feature for the interactive dots was present, but it was designed to revert back to the dot's original color as soon as the user's finger was not in contact anymore, which can be seen in Figure \ref{fig:dot-green}. Additionally, the darkening of the visual field was also implemented during this phase.
 
 \vspace{1em}
 
-The auditory script for the first implementation was finalized with orchestration logic to ensure a controlled playback of hallucinations. The audio clips, recorded in French, were refined to express a wider range of emotional tones, including confusion, fear, and aggression, and were set to play in a fixed sequence.
+The auditory script for the first implementation was finalized with orchestration logic to ensure a controlled playback of hallucinations. The audio clips were refined to express a wider range of emotional tones, including confusion, fear, and aggression, and were set to play in a fixed sequence.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{../../Figures/dot-color-green.png}
     \caption{Dot changes color to green when touched, but reverts back to red when not touched anymore.}
@@ -328,17 +327,17 @@ However, until the final version was completed, several challenges emerged which
 Despite careful planning, several significant challenges emerged during the development of the simulation:
 
 \paragraph{Audio Loops} 
-Initially, each interactive sphere instantiated its own sound playback. This led to multiple overlapping sound loops, which had to be fixed. The problem arose because the audio logic was not centralized — each sphere's ObjectCollision component independently triggered audio playback upon spawning. For example, if five spheres were instantiated, each would play its own sound, leading to overlapping audio. The audio would then only stop, if all five spheres were touched, which is not the intended behavior.
+Initially, each interactive sphere instantiated its own sound playback. This led to multiple overlapping sound loops, which had to be fixed. The problem arose because the audio logic was not centralized — each sphere's \texttt{ObjectCollision.cs} component independently triggered audio playback upon spawning. For example, if five spheres were instantiated, each would play its own sound, leading to overlapping audio. The audio would then only stop, if all five spheres were touched, which is not the intended behavior.
 
 \vspace{1em}
 
-To solve this issue, a shared audio management system is developed, which is a static AudioSource and coroutine created within \texttt{ObjectCollision.cs}. This means that only one looped sound source exists, and it is globally stopped when a user interacts with any sphere.
+To solve this issue, a shared audio management system is developed, which is a static AudioSource and coroutine created within \texttt{ObjectCollision.cs}. This means that only one looped sound source exists, and it is globally stopped when a user interacts with any sphere. This happens through the use of static variables - as a static variable belongs to the class itself, not to any specific instance of the class. This means that no matter how many game objects have this \texttt{ObjectCollision.cs} script attached to them, there is only one copy of \texttt{sharedAudioSource} and \texttt{targetClip} in memory that they all share and can access. 
 
 A key logic excerpt illustrating this centralization is:
 
 \begin{quote} \small \texttt{if (sharedAudioSource == null) { sharedAudioSource = ...; coroutineHost = this; repeatCoroutine = coroutineHost.StartCoroutine(RepeatAudio());}} \end{quote}
 
-This ensures no duplicate sounds occur, even with multiple spheres present.
+The first instance of the script to run will find this variable is empty and, as shown in the code excerpt, \texttt{if (sharedAudioSource == null)}, it will then set up the audio and start a looping routine. Any other instances of the script that load afterward will see that the audio variable is already filled and will simply use the existing one instead of creating a new one. This approach centralizes control of the audio, so any object that detects a collision can easily stop the sound for everyone else by changing a single shared variable
 
 \paragraph{Finger Interaction} 
 A second major challenge was accurately detecting when a user touched a dot. Initially, an additional \textit{poke interaction} module was mistakenly integrated alongside the already built-in collision detection by Unity. This redundant system caused conflicting behavior and unpredictable touch responses. Upon deeper inspection, it was discovered that Unitys hand collision system already assigns specific identifiers to each fingertip collider, such as \textit{HandIndex1} for the index finger. Reliable detection could therefore be implemented simply by checking the collision object's name during a collision event, rather than adding redundant interaction modules.
@@ -356,12 +355,10 @@ Another significant challenge was the spatial arrangement of audio sources withi
 
 \vspace{1em}
 
-To solve this, some time was invested to become familiar with Unity's camera controls and 3D scene navigation.Then, the sound sources were distributed strategically across different coordinates, ensuring that different hallucinated voices would come from distinct spatial directions.
+To solve this, some time was invested to become familiar with Unity's camera controls and 3D scene navigation.Then, the sound sources were distributed strategically across different coordinates, ensuring that different hallucinated voices would come from distinct spatial directions. An example of the 3D placement of the sound sources in the Unity scene is shown in \autoref{fig:sound_sources}.
+
+\begin{figure}[htbp] \centering \includegraphics[width=0.8\textwidth]{../../Figures/unity-scene.png} \caption{Placement of spatial sound sources in the Unity scene for the hallucination simulation. Each speaker icon represents a sound source emitting a hallucination voice.} \label{fig:sound_sources} \end{figure}
 
 \vspace{1em}
-
-An example of the 3D placement of the sound sources in the Unity scene is shown in \autoref{fig:sound_sources}.
-
-\begin{figure}[H] \centering \includegraphics[width=0.8\textwidth]{../../Figures/unity-scene.png} \caption{Placement of spatial sound sources in the Unity scene for the hallucination simulation. Each speaker icon represents a sound source emitting a hallucination voice.} \label{fig:sound_sources} \end{figure}
 
 After the description of the implementation of the MR simulation, the next chapter will outline the user study designed to test if this MR simulation actually helps increase empathy.
